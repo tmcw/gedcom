@@ -3,11 +3,21 @@
 A simple [GEDCOM](http://en.wikipedia.org/wiki/GEDCOM) parser that
 focuses on translating GEDCOM structure into [JSON](http://www.json.org/).
 
-## API
+Tested with GEDCOM 5.5 exported from [Geni.com](http://www.geni.com/).
 
-* `parse(string, function(err, res) { })`
-* `.transformStream()`: returns a through stream that
-  parses GEDCOM data.
+## Usage
+
+node or browserify:
+
+    npm install --save parse-gedcom
+
+otherwise:
+
+```html
+<script src='https://wzrd.in/standalone/parse-gedcom@latest'></script>
+```
+
+## [Usage Online](http://macwright.org/parse-gedcom/live/)
 
 ## CLI Usage
 
@@ -25,4 +35,7 @@ a [d3](http://d3js.org/) force layout.
 $ parse-gedcom-d3 < file.ged > output.json
 ```
 
-See `demo.html` in this repository for an example.
+## API
+
+* `parse(string)` -> JSON
+* `require('parse-gedcom/d3ize')(JSON)` -> d3-capable JSON
