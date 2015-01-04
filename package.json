@@ -25,5 +25,9 @@
     "browserify": "^8.0.3",
     "d3": "^3.5.3",
     "tape": "^3.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tmcw/parse-gedcom.git"
   }
 }
