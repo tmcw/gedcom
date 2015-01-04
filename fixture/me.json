@@ -32,15 +32,40 @@
         },
         {
           "pointer": "",
-          "tag": "BIRT",
+          "tag": "GRAD",
           "data": "",
           "tree": [
             {
               "pointer": "",
               "tag": "DATE",
-              "data": "24 MAR 1987",
+              "data": "2005",
               "tree": []
             },
+            {
+              "pointer": "",
+              "tag": "PLAC",
+              "data": "College of WIlliam & Mary",
+              "tree": []
+            },
+            {
+              "pointer": "",
+              "tag": "ADDR",
+              "data": "",
+              "tree": []
+            },
+            {
+              "pointer": "",
+              "tag": "NOTE",
+              "data": "{geni:degree} B Sc",
+              "tree": []
+            }
+          ]
+        },
+        {
+          "pointer": "",
+          "tag": "RESI",
+          "data": "",
+          "tree": [
             {
               "pointer": "",
               "tag": "ADDR",
@@ -49,13 +74,13 @@
                 {
                   "pointer": "",
                   "tag": "CITY",
-                  "data": "Morristown",
+                  "data": "Williamsburg",
                   "tree": []
                 },
                 {
                   "pointer": "",
                   "tag": "STAE",
-                  "data": "New Jersey",
+                  "data": "Virginia",
                   "tree": []
                 },
                 {
@@ -68,138 +93,75 @@
             },
             {
               "pointer": "",
-              "tag": "GRAD",
+              "tag": "_EMAIL",
+              "data": "macwright@gmail.com",
+              "tree": []
+            },
+            {
+              "pointer": "",
+              "tag": "FAMC",
+              "data": "@F4026491643130011121@",
+              "tree": []
+            },
+            {
+              "pointer": "",
+              "tag": "RFN",
+              "data": "geni:58346",
+              "tree": []
+            },
+            {
+              "pointer": "",
+              "tag": "OBJE",
               "data": "",
               "tree": [
                 {
                   "pointer": "",
-                  "tag": "DATE",
-                  "data": "2005",
+                  "tag": "FORM",
+                  "data": "text/html",
                   "tree": []
                 },
                 {
                   "pointer": "",
-                  "tag": "PLAC",
-                  "data": "College of WIlliam & Mary",
-                  "tree": []
-                },
-                {
-                  "pointer": "",
-                  "tag": "ADDR",
-                  "data": "",
-                  "tree": []
-                },
-                {
-                  "pointer": "",
-                  "tag": "NOTE",
-                  "data": "{geni:degree} B Sc",
+                  "tag": "FILE",
+                  "data": "http://www.geni.com/photo/view?photo_id=2910",
                   "tree": []
                 }
               ]
             },
             {
               "pointer": "",
-              "tag": "RESI",
+              "tag": "OBJE",
               "data": "",
               "tree": [
                 {
                   "pointer": "",
-                  "tag": "ADDR",
+                  "tag": "FORM",
                   "data": "",
-                  "tree": [
-                    {
-                      "pointer": "",
-                      "tag": "CITY",
-                      "data": "Williamsburg",
-                      "tree": []
-                    },
-                    {
-                      "pointer": "",
-                      "tag": "STAE",
-                      "data": "Virginia",
-                      "tree": []
-                    },
-                    {
-                      "pointer": "",
-                      "tag": "CTRY",
-                      "data": "United States",
-                      "tree": []
-                    }
-                  ]
-                },
-                {
-                  "pointer": "",
-                  "tag": "_EMAIL",
-                  "data": "macwright@gmail.com",
                   "tree": []
                 },
                 {
                   "pointer": "",
-                  "tag": "FAMC",
-                  "data": "@F4026491643130011121@",
+                  "tag": "FILE",
+                  "data": "http://photos.geni.com/00/00/0b/5e/bos27tuc/00000b5e_large.jpg",
                   "tree": []
-                },
+                }
+              ]
+            },
+            {
+              "pointer": "",
+              "tag": "CHAN",
+              "data": "",
+              "tree": [
                 {
                   "pointer": "",
-                  "tag": "RFN",
-                  "data": "geni:58346",
-                  "tree": []
-                },
-                {
-                  "pointer": "",
-                  "tag": "OBJE",
-                  "data": "",
+                  "tag": "DATE",
+                  "data": "27 OCT 2014",
                   "tree": [
                     {
                       "pointer": "",
-                      "tag": "FORM",
-                      "data": "text/html",
+                      "tag": "TIME",
+                      "data": "03:01:46",
                       "tree": []
-                    },
-                    {
-                      "pointer": "",
-                      "tag": "FILE",
-                      "data": "http://www.geni.com/photo/view?photo_id=2910",
-                      "tree": []
-                    }
-                  ]
-                },
-                {
-                  "pointer": "",
-                  "tag": "OBJE",
-                  "data": "",
-                  "tree": [
-                    {
-                      "pointer": "",
-                      "tag": "FORM",
-                      "data": "",
-                      "tree": []
-                    },
-                    {
-                      "pointer": "",
-                      "tag": "FILE",
-                      "data": "http://photos.geni.com/00/00/0b/5e/bos27tuc/00000b5e_large.jpg",
-                      "tree": []
-                    }
-                  ]
-                },
-                {
-                  "pointer": "",
-                  "tag": "CHAN",
-                  "data": "",
-                  "tree": [
-                    {
-                      "pointer": "",
-                      "tag": "DATE",
-                      "data": "27 OCT 2014",
-                      "tree": [
-                        {
-                          "pointer": "",
-                          "tag": "TIME",
-                          "data": "03:01:46",
-                          "tree": []
-                        }
-                      ]
                     }
                   ]
                 }

@@ -3,17 +3,6 @@
   2 GIVN Tom
   2 SURN MacWright
  1 SEX M
- 1 BIRT
-  2 DATE 24 MAR 1987
-  2 ADDR
-   3 CITY Morristown
-   3 STAE New Jersey
-   3 CTRY United States
- 1 GRAD
-  2 DATE 2005
-  2 PLAC College of WIlliam & Mary
-  2 ADDR
-  2 NOTE {geni:degree} B Sc
  1 RESI
   2 ADDR
    3 CITY Williamsburg
