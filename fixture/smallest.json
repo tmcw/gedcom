@@ -1,53 +1,67 @@
 {
-  "root": {
-    "tree": [
-      {
-        "level": 0,
-        "pointer": "",
-        "tag": "HEAD",
-        "data": "",
-        "tree": []
-      },
-      {
-        "level": 0,
-        "pointer": "@U@",
-        "tag": "SUBM",
-        "data": "",
-        "tree": []
-      },
-      {
-        "level": 0,
-        "pointer": "",
-        "tag": "TRLR",
-        "data": "",
-        "tree": []
-      }
-    ]
-  },
-  "level": 0,
-  "pointer": {
-    "tree": [
-      {
-        "level": 0,
-        "pointer": "",
-        "tag": "HEAD",
-        "data": "",
-        "tree": []
-      },
-      {
-        "level": 0,
-        "pointer": "@U@",
-        "tag": "SUBM",
-        "data": "",
-        "tree": []
-      },
-      {
-        "level": 0,
-        "pointer": "",
-        "tag": "TRLR",
-        "data": "",
-        "tree": []
-      }
-    ]
-  }
+  "tree": [
+    {
+      "pointer": "",
+      "tag": "HEAD",
+      "data": "",
+      "tree": [
+        {
+          "pointer": "",
+          "tag": "SOUR",
+          "data": "0",
+          "tree": []
+        },
+        {
+          "pointer": "",
+          "tag": "SUBM",
+          "data": "@U@",
+          "tree": []
+        },
+        {
+          "pointer": "",
+          "tag": "GEDC",
+          "data": "",
+          "tree": [
+            {
+              "pointer": "",
+              "tag": "VERS",
+              "data": "5.5.1",
+              "tree": []
+            },
+            {
+              "pointer": "",
+              "tag": "FORM",
+              "data": "LINEAGE-LINKED",
+              "tree": []
+            }
+          ]
+        },
+        {
+          "pointer": "",
+          "tag": "CHAR",
+          "data": "ASCII",
+          "tree": []
+        }
+      ]
+    },
+    {
+      "pointer": "@U@",
+      "tag": "SUBM",
+      "data": "",
+      "tree": [
+        {
+          "pointer": "",
+          "tag": "NAME",
+          "data": "X",
+          "tree": []
+        }
+      ]
+    },
+    {
+      "pointer": "",
+      "tag": "TRLR",
+      "data": "",
+      "tree": []
+    }
+  ]
 }
