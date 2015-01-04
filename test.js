@@ -1,15 +1,25 @@
 var test = require('tape'),
     fs = require('fs'),
+    d3ize = require('./d3ize'),
     parse = require('./');
 
 function fixture(t, name) {
-    parse(fs.readFileSync(__dirname + '/fixture/' + name + '.ged', 'utf8'), function(err, d) {
-        if (process.env.UPDATE) {
-            fs.writeFileSync(__dirname + '/fixture/' + name + '.json', JSON.stringify(d, null, 2));
-        }
-        t.deepEqual(d, require('./fixture/' + name + '.json'), name);
-        t.end();
-    });
+    var result = parse(fs.readFileSync(__dirname + '/fixture/' + name + '.ged', 'utf8'));
+    if (process.env.UPDATE) {
+        fs.writeFileSync(__dirname + '/fixture/' + name + '.json', JSON.stringify(result, null, 2));
+    }
+    t.deepEqual(result, require('./fixture/' + name + '.json'), name);
+    t.end();
+}
+
+function fixture_d3ize(t, name) {
+    var result = d3ize(
+        parse(fs.readFileSync(__dirname + '/fixture/' + name + '.ged', 'utf8')));
+    if (process.env.UPDATE) {
+        fs.writeFileSync(__dirname + '/fixture/' + name + '.d3.json', JSON.stringify(result, null, 2));
+    }
+    t.deepEqual(result, require('./fixture/' + name + '.d3.json'), name);
+    t.end();
 }
 
 test('ged', function(t) {
@@ -18,6 +28,13 @@ test('ged', function(t) {
     });
     t.test(function(t) {
         fixture(t, 'me');
+    });
+    t.end();
+});
+
+test('d3ize', function(t) {
+    t.test(function(t) {
+        fixture_d3ize(t, 'me');
     });
     t.end();
 });

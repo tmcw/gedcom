@@ -1,175 +1,142 @@
-{
-  "tree": [
-    {
-      "pointer": "@I58346@",
-      "tag": "INDI",
-      "data": "",
-      "tree": [
-        {
-          "pointer": "",
-          "tag": "NAME",
-          "data": "Tom /MacWright/",
-          "tree": [
-            {
-              "pointer": "",
-              "tag": "GIVN",
-              "data": "Tom",
-              "tree": []
-            },
-            {
-              "pointer": "",
-              "tag": "SURN",
-              "data": "MacWright",
-              "tree": []
-            }
-          ]
-        },
-        {
-          "pointer": "",
-          "tag": "SEX",
-          "data": "M",
-          "tree": []
-        },
-        {
-          "pointer": "",
-          "tag": "GRAD",
-          "data": "",
-          "tree": [
-            {
-              "pointer": "",
-              "tag": "DATE",
-              "data": "2005",
-              "tree": []
-            },
-            {
-              "pointer": "",
-              "tag": "PLAC",
-              "data": "College of WIlliam & Mary",
-              "tree": []
-            },
-            {
-              "pointer": "",
-              "tag": "ADDR",
-              "data": "",
-              "tree": []
-            },
-            {
-              "pointer": "",
-              "tag": "NOTE",
-              "data": "{geni:degree} B Sc",
-              "tree": []
-            }
-          ]
-        },
-        {
-          "pointer": "",
-          "tag": "RESI",
-          "data": "",
-          "tree": [
-            {
-              "pointer": "",
-              "tag": "ADDR",
-              "data": "",
-              "tree": [
-                {
-                  "pointer": "",
-                  "tag": "CITY",
-                  "data": "Williamsburg",
-                  "tree": []
-                },
-                {
-                  "pointer": "",
-                  "tag": "STAE",
-                  "data": "Virginia",
-                  "tree": []
-                },
-                {
-                  "pointer": "",
-                  "tag": "CTRY",
-                  "data": "United States",
-                  "tree": []
-                }
-              ]
-            },
-            {
-              "pointer": "",
-              "tag": "_EMAIL",
-              "data": "macwright@gmail.com",
-              "tree": []
-            },
-            {
-              "pointer": "",
-              "tag": "FAMC",
-              "data": "@F4026491643130011121@",
-              "tree": []
-            },
-            {
-              "pointer": "",
-              "tag": "RFN",
-              "data": "geni:58346",
-              "tree": []
-            },
-            {
-              "pointer": "",
-              "tag": "OBJE",
-              "data": "",
-              "tree": [
-                {
-                  "pointer": "",
-                  "tag": "FORM",
-                  "data": "text/html",
-                  "tree": []
-                },
-                {
-                  "pointer": "",
-                  "tag": "FILE",
-                  "data": "http://www.geni.com/photo/view?photo_id=2910",
-                  "tree": []
-                }
-              ]
-            },
-            {
-              "pointer": "",
-              "tag": "OBJE",
-              "data": "",
-              "tree": [
-                {
-                  "pointer": "",
-                  "tag": "FORM",
-                  "data": "",
-                  "tree": []
-                },
-                {
-                  "pointer": "",
-                  "tag": "FILE",
-                  "data": "http://photos.geni.com/00/00/0b/5e/bos27tuc/00000b5e_large.jpg",
-                  "tree": []
-                }
-              ]
-            },
-            {
-              "pointer": "",
-              "tag": "CHAN",
-              "data": "",
-              "tree": [
-                {
-                  "pointer": "",
-                  "tag": "DATE",
-                  "data": "27 OCT 2014",
-                  "tree": [
-                    {
-                      "pointer": "",
-                      "tag": "TIME",
-                      "data": "03:01:46",
-                      "tree": []
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "pointer": "@I58346@",
+    "tag": "INDI",
+    "data": "",
+    "tree": [
+      {
+        "pointer": "",
+        "tag": "NAME",
+        "data": "Tom /MacWright/",
+        "tree": [
+          {
+            "pointer": "",
+            "tag": "GIVN",
+            "data": "Tom",
+            "tree": []
+          },
+          {
+            "pointer": "",
+            "tag": "SURN",
+            "data": "MacWright",
+            "tree": []
+          }
+        ]
+      },
+      {
+        "pointer": "",
+        "tag": "SEX",
+        "data": "M",
+        "tree": []
+      },
+      {
+        "pointer": "",
+        "tag": "RESI",
+        "data": "",
+        "tree": [
+          {
+            "pointer": "",
+            "tag": "ADDR",
+            "data": "",
+            "tree": [
+              {
+                "pointer": "",
+                "tag": "CITY",
+                "data": "Williamsburg",
+                "tree": []
+              },
+              {
+                "pointer": "",
+                "tag": "STAE",
+                "data": "Virginia",
+                "tree": []
+              },
+              {
+                "pointer": "",
+                "tag": "CTRY",
+                "data": "United States",
+                "tree": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "pointer": "",
+        "tag": "_EMAIL",
+        "data": "macwright@gmail.com",
+        "tree": []
+      },
+      {
+        "pointer": "",
+        "tag": "FAMC",
+        "data": "@F4026491643130011121@",
+        "tree": []
+      },
+      {
+        "pointer": "",
+        "tag": "RFN",
+        "data": "geni:58346",
+        "tree": []
+      },
+      {
+        "pointer": "",
+        "tag": "OBJE",
+        "data": "",
+        "tree": [
+          {
+            "pointer": "",
+            "tag": "FORM",
+            "data": "text/html",
+            "tree": []
+          },
+          {
+            "pointer": "",
+            "tag": "FILE",
+            "data": "http://www.geni.com/photo/view?photo_id=2910",
+            "tree": []
+          }
+        ]
+      },
+      {
+        "pointer": "",
+        "tag": "OBJE",
+        "data": "",
+        "tree": [
+          {
+            "pointer": "",
+            "tag": "FORM",
+            "data": "",
+            "tree": []
+          },
+          {
+            "pointer": "",
+            "tag": "FILE",
+            "data": "http://photos.geni.com/00/00/0b/5e/bos27tuc/00000b5e_large.jpg",
+            "tree": []
+          }
+        ]
+      },
+      {
+        "pointer": "",
+        "tag": "CHAN",
+        "data": "",
+        "tree": [
+          {
+            "pointer": "",
+            "tag": "DATE",
+            "data": "27 OCT 2014",
+            "tree": [
+              {
+                "pointer": "",
+                "tag": "TIME",
+                "data": "03:01:46",
+                "tree": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
