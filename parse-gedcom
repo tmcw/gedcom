@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+var parse = require('./');
+
+process.stdin.pipe(parse.transformStream())
+    .on('data', function(d) {
+        console.log(JSON.stringify(d, null, 2));
+    });

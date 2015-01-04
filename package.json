@@ -1,0 +1,28 @@
+{
+  "name": "parse-gedcom",
+  "version": "1.0.0",
+  "description": "a simple and readable gedcom parser",
+  "main": "index.js",
+  "bin": {
+    "parse-gedcom": "parse-gedcom"
+  },
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "keywords": [
+    "gedcom",
+    "format",
+    "geneaology"
+  ],
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "dependencies": {
+    "event-stream": "^3.2.1",
+    "stream-combiner": "^0.2.1",
+    "stream-reduce": "^1.0.3",
+    "traverse": "^0.6.6"
+  },
+  "devDependencies": {
+    "tape": "^3.0.3"
+  }
+}

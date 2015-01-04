@@ -1,0 +1,33 @@
+0 @I58346@ INDI
+ 1 NAME Tom /MacWright/
+  2 GIVN Tom
+  2 SURN MacWright
+ 1 SEX M
+ 1 BIRT
+  2 DATE 24 MAR 1987
+  2 ADDR
+   3 CITY Morristown
+   3 STAE New Jersey
+   3 CTRY United States
+ 1 GRAD
+  2 DATE 2005
+  2 PLAC College of WIlliam & Mary
+  2 ADDR
+  2 NOTE {geni:degree} B Sc
+ 1 RESI
+  2 ADDR
+   3 CITY Williamsburg
+   3 STAE Virginia
+   3 CTRY United States
+ 1 _EMAIL macwright@gmail.com
+ 1 FAMC @F4026491643130011121@
+ 1 RFN geni:58346
+ 1 OBJE
+  2 FORM text/html
+  2 FILE http://www.geni.com/photo/view?photo_id=2910
+ 1 OBJE
+  2 FORM
+  2 FILE http://photos.geni.com/00/00/0b/5e/bos27tuc/00000b5e_large.jpg
+ 1 CHAN
+  2 DATE 27 OCT 2014
+   3 TIME 03:01:46
