@@ -25,4 +25,4 @@ a [d3](http://d3js.org/) force layout.
 $ parse-gedcom-d3 < file.ged > output.json
 ```
 
-See `demo.js` in this repository for an example.
+See `demo.html` in this repository for an example.
