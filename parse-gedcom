@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-var parse = require('./'),
+var gedcom = require('./'),
     concat = require('concat-stream');
 
 process.stdin.pipe(concat(function(gedcom) {
     var input = gedcom.toString();
     if (input.charCodeAt(0) == 65279) input = input.substring(1);
-    var output = parse(input);
+    var output = gedcom.parse(input);
     console.log(JSON.stringify(output, null, 2));
 }));

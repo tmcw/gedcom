@@ -1,7 +1,8 @@
 var test = require('tape'),
     fs = require('fs'),
-    d3ize = require('./d3ize'),
-    parse = require('./');
+    gedcom = require('./'),
+    parse = gedcom.parse,
+    d3ize = gedcom.d3ize;
 
 function fixture(t, name) {
     var result = parse(fs.readFileSync(__dirname + '/fixture/' + name + '.ged', 'utf8'));

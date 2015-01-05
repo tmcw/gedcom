@@ -39,5 +39,5 @@ $ parse-gedcom-d3 < file.ged > output.json
 
 ## API
 
-* `parse(string)` -> JSON
-* `require('parse-gedcom/d3ize')(JSON)` -> d3-capable JSON
+* `.parse(string)` -> JSON
+* `.d3ize(JSON)` -> d3-capable JSON

@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-var parse = require('./'),
-    d3ize = require('./d3ize'),
+var gedcom = require('./'),
     concat = require('concat-stream');
 
 process.stdin.pipe(concat(function(gedcom) {
     var input = gedcom.toString();
     if (input.charCodeAt(0) == 65279) input = input.substring(1);
-    var output = d3ize(parse(input));
+    var output = gedcom.d3ize(gedcom.parse(input));
     console.log(JSON.stringify(output, null, 2));
 }));

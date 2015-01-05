@@ -63,4 +63,5 @@ function parse(input) {
     }
 }
 
-module.exports = parse;
+module.exports.parse = parse;
+module.exports.d3ize = require('./d3ize');
