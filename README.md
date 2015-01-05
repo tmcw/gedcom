@@ -41,3 +41,13 @@ $ parse-gedcom-d3 < file.ged > output.json
 
 * `.parse(string)` -> JSON
 * `.d3ize(JSON)` -> d3-capable JSON
+
+## See Also
+
+* There are [several other GEDCOM parser in JavaScript](https://www.npmjs.com/search?q=gedcom).
+  Unfortunately quite a few of them are unfinished, or have antipatterns like
+  tying themselves to `fs.readFile`, nixing them for `browserify` usage. The focus
+  of `parse-gedcom` is squarely on being simple and presenting the structure
+  of GEDCOM files, rather than expanding abbreviations or creating a new
+  model for the object's format.
+* The most mature GEDCOM parsers are in Java, like [DallanQ/Gedcom](https://github.com/DallanQ/Gedcom).
