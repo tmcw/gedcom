@@ -44,7 +44,7 @@ $ parse-gedcom-d3 < file.ged > output.json
 
 ## See Also
 
-* There are [several other GEDCOM parser in JavaScript](https://www.npmjs.com/search?q=gedcom).
+* There are [several other GEDCOM parsers in JavaScript](https://www.npmjs.com/search?q=gedcom).
   Unfortunately quite a few of them are unfinished, or have antipatterns like
   tying themselves to `fs.readFile`, nixing them for `browserify` usage. The focus
   of `parse-gedcom` is squarely on being simple and presenting the structure

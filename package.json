@@ -4,7 +4,8 @@
   "description": "a simple and readable gedcom parser",
   "main": "index.js",
   "bin": {
-    "parse-gedcom": "parse-gedcom"
+    "parse-gedcom": "./bin/parse-gedcom",
+    "parse-gedcom-d3": "./bin/parse-gedcom-d3"
   },
   "scripts": {
     "test": "tape test.js",
