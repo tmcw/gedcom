@@ -45,15 +45,22 @@ function toNode(p) {
 
 function idToIndex(indexedNodes) {
     return function(link) {
+        function getIndexed(id) {
+            return indexedNodes[id];
+        }
         return {
-            source: indexedNodes[link.source],
-            target: indexedNodes[link.target]
+            source: getIndexed(link.source),
+            target: getIndexed(link.target)
         };
     };
 }
 
 function familyLinks(family) {
-    var memberLinks = family.tree.map(function(member) {
+    var memberLinks = family.tree.filter(function(member) {
+        // avoid connecting MARR, etc: things that are not
+        // people.
+        return member.data && member.data[0] === '@';
+    }).map(function(member) {
         return {
             source: family.pointer,
             target: member.data
@@ -130,9 +137,10 @@ function parse(input) {
     }
 }
 
-module.exports = parse;
+module.exports.parse = parse;
+module.exports.d3ize = require('./d3ize');
 
-},{"traverse":5}],3:[function(require,module,exports){
+},{"./d3ize":1,"traverse":5}],3:[function(require,module,exports){
 var d3 = require('d3'),
     parse = require('../'),
     d3ize = require('../d3ize');
