@@ -31,6 +31,8 @@ function getName(p) {
         var nameNode = (p.tree.filter(hasTag('NAME')) || [])[0];
         if (nameNode) {
             return nameNode.data.replace(/\//g, '');
+        } else {
+            return '?';
         }
     } else {
         return 'Family';
@@ -142,8 +144,7 @@ module.exports.d3ize = require('./d3ize');
 
 },{"./d3ize":1,"traverse":5}],3:[function(require,module,exports){
 var d3 = require('d3'),
-    parse = require('../'),
-    d3ize = require('../d3ize');
+    parse = require('../');
 
 var width = window.innerWidth,
     height = window.innerHeight;
@@ -173,7 +174,7 @@ var svg = d3.select('body').append('svg')
 
         reader.onload = function(e) {
             dropHint.remove();
-            buildGraph(d3ize(parse(e.target.result)));
+            buildGraph(parse.d3ize(parse.parse(e.target.result)));
         };
 
         reader.readAsText(f);
@@ -229,7 +230,7 @@ function buildGraph(graph) {
   });
 }
 
-},{"../":2,"../d3ize":1,"d3":4}],4:[function(require,module,exports){
+},{"../":2,"d3":4}],4:[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.3"

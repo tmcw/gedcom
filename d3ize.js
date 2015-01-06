@@ -30,6 +30,8 @@ function getName(p) {
         var nameNode = (p.tree.filter(hasTag('NAME')) || [])[0];
         if (nameNode) {
             return nameNode.data.replace(/\//g, '');
+        } else {
+            return '?';
         }
     } else {
         return 'Family';

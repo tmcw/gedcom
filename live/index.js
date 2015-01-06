@@ -1,6 +1,5 @@
 var d3 = require('d3'),
-    parse = require('../'),
-    d3ize = require('../d3ize');
+    parse = require('../');
 
 var width = window.innerWidth,
     height = window.innerHeight;
@@ -30,7 +29,7 @@ var svg = d3.select('body').append('svg')
 
         reader.onload = function(e) {
             dropHint.remove();
-            buildGraph(d3ize(parse(e.target.result)));
+            buildGraph(parse.d3ize(parse.parse(e.target.result)));
         };
 
         reader.readAsText(f);
