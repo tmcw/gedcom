@@ -26,8 +26,11 @@ otherwise:
 `parse-gedcom` transforms GEDCOM files into JSON with proper nesting of
 family & child elements.
 
+Input can be from stdin or a file path given as the first argument.
+
 ```sh
 $ parse-gedcom < file.ged > output.json
+$ parse-gedcom file.ged > output.json
 ```
 
 `parse-gedcom-d3` transforms GEDCOM files into JSON ready to be used in
