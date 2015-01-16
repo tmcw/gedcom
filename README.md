@@ -21,6 +21,9 @@ otherwise:
 
 ## [Usage Online](http://macwright.org/parse-gedcom/live/)
 
+There's also [an example using requirebin](http://requirebin.com/?gist=c7e35c7e49b82c933a1d) to demonstrate
+how you'd use parse-gedcom with browserify.
+
 ## CLI Usage
 
 `parse-gedcom` transforms GEDCOM files into JSON with proper nesting of
