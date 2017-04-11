@@ -1,6 +1,7 @@
 # parse-gedcom
 
-[![build status](https://secure.travis-ci.org/tmcw/parse-gedcom.png)](http://travis-ci.org/tmcw/parse-gedcom)
+[![build status](https://secure.travis-ci.org/tmcw/parse-gedcom.svg)](http://travis-ci.org/tmcw/parse-gedcom)
+[![Greenkeeper badge](https://badges.greenkeeper.io/tmcw/parse-gedcom.svg)](https://greenkeeper.io/)
 
 A simple [GEDCOM](http://en.wikipedia.org/wiki/GEDCOM) parser that
 focuses on translating GEDCOM structure into [JSON](http://www.json.org/).
