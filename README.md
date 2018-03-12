@@ -20,7 +20,7 @@ otherwise:
 <script src='https://wzrd.in/standalone/parse-gedcom@latest'></script>
 ```
 
-## [Usage Online](http://macwright.org/parse-gedcom/live/)
+## [Usage Online](https://tmcw.github.io/parse-gedcom/live/)
 
 There's also [an example using requirebin](http://requirebin.com/?gist=c7e35c7e49b82c933a1d) to demonstrate
 how you'd use parse-gedcom with browserify.
