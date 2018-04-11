@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "browserify": "^15.0.0",
-    "d3": "^4.7.4",
+    "d3": "^5.0.0",
     "tape": "^4.6.3"
   },
   "repository": {
