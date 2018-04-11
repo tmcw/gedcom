@@ -23,7 +23,7 @@
     "traverse": "^0.6.6"
   },
   "devDependencies": {
-    "browserify": "^15.0.0",
+    "browserify": "^16.2.0",
     "d3": "^4.7.4",
     "tape": "^4.6.3"
   },
