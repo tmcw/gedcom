@@ -14,6 +14,18 @@ test("parser", () => {
   });
 });
 
+test("parser-refs", () => {
+  expect(parse("1 NAME Elizabeth /Stansfield/")[0]).toEqual({
+    level: 1,
+    tag: "NAME",
+    value: "Elizabeth /Stansfield/",
+    parsed: {
+      name: "Elizabeth Stansfield",
+      surname: "Stansfield"
+    }
+  });
+});
+
 test("tags", () => {
   expect(tags.WILL).toEqual({
     tag: "WILL",
