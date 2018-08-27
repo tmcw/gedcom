@@ -2,13 +2,20 @@
   "name": "parse-gedcom",
   "version": "1.0.3",
   "description": "a simple and readable gedcom parser",
-  "main": "index.js",
+  "source": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.m.js",
+  "main:umd": "dist/index.umd.js",
+  "unpkg": "dist/index.umd.js",
+  "files": [
+    "dist"
+  ],
   "bin": {
     "parse-gedcom": "./bin/parse-gedcom",
     "parse-gedcom-d3": "./bin/parse-gedcom-d3"
   },
   "scripts": {
-    "test": "tape test.js",
+    "test": "microbundle && tape test.js",
     "build": "browserify live/index.js -o live/bundle.js"
   },
   "keywords": [
@@ -19,14 +26,15 @@
   "author": "Tom MacWright",
   "license": "ISC",
   "dependencies": {
-    "concat-stream": "^1.4.7",
-    "traverse": "^0.6.6"
+    "concat-stream": "^1.4.7"
   },
   "devDependencies": {
-    "browserify": "^16.2.1",
-    "browserify": "^16.2.1",
     "d3": "^5.0.0",
-    "tape": "^4.6.3"
+    "jest": "^23.5.0",
+    "microbundle": "^0.6.0",
+    "prettier": "^1.14.2",
+    "tape": "^4.6.3",
+    "traverse": "^0.6.6"
   },
   "repository": {
     "type": "git",
