@@ -19,7 +19,7 @@
   "author": "Tom MacWright",
   "license": "ISC",
   "dependencies": {
-    "concat-stream": "^1.4.7",
+    "concat-stream": "^2.0.0",
     "traverse": "^0.6.6"
   },
   "devDependencies": {
