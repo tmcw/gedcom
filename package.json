@@ -15,8 +15,8 @@
     "parse-gedcom-d3": "./bin/parse-gedcom-d3"
   },
   "scripts": {
-    "test": "microbundle && tape test.js",
-    "build": "browserify live/index.js -o live/bundle.js"
+    "test": "rollup -c rollup.config.js && jest",
+    "prepublish": "rollup -c rollup.config.js"
   },
   "keywords": [
     "gedcom",
@@ -31,8 +31,8 @@
   "devDependencies": {
     "d3": "^5.0.0",
     "jest": "^23.5.0",
-    "microbundle": "^0.6.0",
     "prettier": "^1.14.2",
+    "rollup": "^1.1.0",
     "tape": "^4.6.3",
     "traverse": "^0.6.6"
   },
