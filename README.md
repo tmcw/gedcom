@@ -1,3 +1,5 @@
+**Core development is happening in the [v2 branch](https://github.com/tmcw/parse-gedcom/tree/v2), which is a full rewrite.**
+
 # parse-gedcom
 
 [![build status](https://secure.travis-ci.org/tmcw/parse-gedcom.svg)](http://travis-ci.org/tmcw/parse-gedcom)
