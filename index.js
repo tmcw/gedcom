@@ -57,7 +57,7 @@ function parse(input) {
             level: parseInt(match[1], 10),
             pointer: match[2].trim(),
             tag: match[3].trim(),
-            data: match[4].trim(),
+            data: match[4].trimLeft(),
             tree: []
         };
     }
