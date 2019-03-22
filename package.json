@@ -20,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "concat-stream": "^2.0.0",
-    "traverse": "^0.6.6"
+    "tree-crawl": "^1.0.5"
   },
   "devDependencies": {
     "browserify": "^16.2.1",
