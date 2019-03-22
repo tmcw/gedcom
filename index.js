@@ -1,4 +1,4 @@
-var traverse = require('traverse');
+var crawl = require('tree-crawl');
 
 // from https://github.com/madprime/python-gedcom/blob/master/gedcom/__init__.py
 // * Level must start with nonnegative int, no leading zeros.
@@ -12,16 +12,15 @@ function parse(input) {
     var start = { root: { tree: [] }, level: 0 };
     start.pointer = start.root;
 
-    return traverse(input
+    var data = input
         .split('\n')
         .map(mapLine)
         .filter(function(_) { return _; })
         .reduce(buildTree, start)
-        .root.tree).map(function(node) {
-            delete node.up;
-            delete node.level;
-            this.update(node);
-        });
+        .root;
+
+    crawl(data, cleanUp, { getChildren });
+    return data.tree;
 
     // the basic trick of this module is turning the suggested tree
     // structure of a GEDCOM file into a tree in JSON. This reduction
@@ -60,6 +59,15 @@ function parse(input) {
             data: match[4].trimLeft(),
             tree: []
         };
+    }
+
+    function cleanUp(node) {
+        delete node.up;
+        delete node.level;
+    }
+
+    function getChildren(node) {
+        return node.tree;
     }
 }
 
