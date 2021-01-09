@@ -36,7 +36,14 @@ export function tokenize(buf: string): Line {
 
   buf = buf.trimStart();
   let xref_id: string | undefined = undefined;
-  const level = parseInt(expect(rLevel, "Expected level"));
+  const levelStr = expect(rLevel, "Expected level");
+
+  if (levelStr.length > 2 || (levelStr.length === 2 && levelStr[0] === "0")) {
+    throw new Error(`Invalid level: ${levelStr}`);
+  }
+
+  const level = parseInt(levelStr);
+
   expect(rDelim, "Expected delimiter after level");
 
   const xref = buf.match(rPointer);

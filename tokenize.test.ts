@@ -16,8 +16,8 @@ test("parser", (t) => {
     value: "SPACE AFTER ",
   });
 
-  t.same(tokenize("1 _USER_DEFINED_TAG X"), {
-    level: 1,
+  t.same(tokenize("12 _USER_DEFINED_TAG X"), {
+    level: 12,
     tag: "_USER_DEFINED_TAG",
     value: "X",
   });
@@ -32,6 +32,23 @@ test("parser", (t) => {
     level: 1,
     tag: "CHIL",
     pointer: "@1234@",
+  });
+
+  t.same(tokenize("0 INDI"), {
+    level: 0,
+    tag: "INDI",
+  });
+
+  t.end();
+});
+
+test("parser error conditions", (t) => {
+  t.throws(() => {
+    tokenize("1");
+  });
+
+  t.throws(() => {
+    tokenize("01 INDI");
   });
 
   t.end();
