@@ -1,16 +1,9 @@
 import { test } from "tap";
-import { parse } from "./parse-to-unist";
+import { compact } from "./unist-compact";
 
-test("parser", (t) => {
+test("compact", (t) => {
   t.same(
-    parse(
-      `0 INDI
-    1 BIRT
-    2 DATE 12 MAY 1920
-    1 DEAT
-    2 DATE 1960`
-    ),
-    {
+    compact({
       type: "root",
       children: [
         {
@@ -57,20 +50,7 @@ test("parser", (t) => {
           ],
         },
       ],
-    }
-  );
-
-  t.end();
-});
-
-test("parser - multiple root entities", (t) => {
-  t.same(
-    parse(
-      `0 INDI
-    1 NAME John
-    0 INDI
-    1 NAME Tom`
-    ),
+    }),
     {
       type: "root",
       children: [
@@ -78,65 +58,18 @@ test("parser - multiple root entities", (t) => {
           type: "INDI",
           data: {
             formal_name: "INDIVIDUAL",
+            "BIRTH/DATE": "12 MAY 1920",
+            "DEATH/DATE": "1960",
           },
           value: undefined,
-          children: [
-            {
-              type: "NAME",
-              data: {
-                formal_name: "NAME",
-              },
-              value: "John",
-              children: [],
-            },
-          ],
-        },
-        {
-          type: "INDI",
-          data: {
-            formal_name: "INDIVIDUAL",
-          },
-          value: undefined,
-          children: [
-            {
-              type: "NAME",
-              data: {
-                formal_name: "NAME",
-              },
-              value: "Tom",
-              children: [],
-            },
-          ],
+          children: [],
         },
       ],
     }
   );
 
-  t.end();
-});
-
-test("parser - pointers", (t) => {
   t.same(
-    parse(
-      `0 @3@ INDI
-      1 NAME Joe/Williams/
-        1 SEX M
-      1 BIRT
-      2 DATE 11 JUN 1861
-      2 PLAC Idaho Falls, Bonneville, Idaho
-      2 FAMC @4@
-      1 FAMC @4@
-      1 FAMC @9@
-      2 PEDI Adopted
-      1 ADOP
-      2 FAMC @9@
-      2 DATE 16 MAR 1864
-      1 SLGC
-      2 FAMC @9@
-      2 DATE 2 OCT 1987
-      2 TEMP SLAKE`
-    ),
-    {
+    compact({
       type: "root",
       children: [
         {
@@ -286,42 +219,33 @@ test("parser - pointers", (t) => {
           ],
         },
       ],
+    }),
+    {
+      type: "root",
+      children: [
+        {
+          type: "INDI",
+          data: {
+            formal_name: "INDIVIDUAL",
+            NAME: "Joe/Williams/",
+            SEX: "M",
+            "BIRTH/DATE": "11 JUN 1861",
+            "BIRTH/PLACE": "Idaho Falls, Bonneville, Idaho",
+            "@BIRTH/FAMILY_CHILD": "@4@",
+            "@FAMILY_CHILD": "@9@",
+            "FAMILY_CHILD/PEDIGREE": "Adopted",
+            "@ADOPTION/FAMILY_CHILD": "@9@",
+            "ADOPTION/DATE": "16 MAR 1864",
+            "@SEALING_CHILD/FAMILY_CHILD": "@9@",
+            "SEALING_CHILD/DATE": "2 OCT 1987",
+            "SEALING_CHILD/TEMPLE": "SLAKE",
+          },
+          value: undefined,
+          children: [],
+        },
+      ],
     }
   );
-  t.end();
-});
-
-test("parser - concatenation", (t) => {
-  t.same(
-    parse(`
-0 SOUR Waters, Henry F., Genealogical Gleanings in England: Abstracts of W
-1 CONC ills Relating to Early American Families. 2 vols., reprint 1901, 190
-1 CONC 7. Baltimore: Genealogical Publishing Co., 1981.
-1 CONT Stored in Family History Library book 942 D2wh; films 481,057-58 Vol 2, pa 
-1 CONC ge 388.`).children[0].value,
-    "Waters, Henry F., Genealogical Gleanings in England: Abstracts of Wills Relating to Early American Families. 2 vols., reprint 1901, 1907. Baltimore: Genealogical Publishing Co., 1981.\nStored in Family History Library book 942 D2wh; films 481,057-58 Vol 2, pa ge 388."
-  );
-  t.end();
-});
-
-test("parser - concatenation", (t) => {
-  t.throws(() => {
-    parse(`
-0 SOUR Waters, Henry F., Genealogical Gleanings in England: Abstracts of W
-1 CONC ills Relating to Early American Families. 2 vols., reprint 1901, 190
-1 CONC @123@`).children[0].value,
-      "Waters, Henry F., Genealogical Gleanings in England: Abstracts of Wills Relating to Early American Families. 2 vols., reprint 1901, 1907. Baltimore: Genealogical Publishing Co., 1981.\nStored in Family History Library book 942 D2wh; films 481,057-58 Vol 2, pa ge 388.";
-  });
-  t.end();
-});
-
-test("parser - error, too large a jump", (t) => {
-  t.throws(() => {
-    parse(
-      `0 INDI
-    2 BIRT`
-    );
-  });
 
   t.end();
 });

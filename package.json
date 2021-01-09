@@ -10,12 +10,9 @@
   "files": [
     "dist"
   ],
-  "bin": {
-    "parse-gedcom": "./bin/parse-gedcom",
-    "parse-gedcom-d3": "./bin/parse-gedcom-d3"
-  },
   "scripts": {
-    "test": "tap"
+    "test": "tap",
+    "build": "rollup -c rollup.config.js"
   },
   "keywords": [
     "gedcom",
@@ -26,12 +23,15 @@
   "license": "ISC",
   "dependencies": {
     "@types/tap": "^14.10.1",
-    "@types/unist": "^2.0.3"
+    "@types/unist": "^2.0.3",
+    "tslib": "^2.1.0",
+    "unist-util-visit-parents": "^3.1.1"
   },
   "devDependencies": {
-    "typescript": "^4.1.3",
+    "@rollup/plugin-typescript": "^8.1.0",
     "rollup": "^2.36.1",
-    "tap": "^14.11.0"
+    "tap": "^14.11.0",
+    "typescript": "^4.1.3"
   },
   "repository": {
     "type": "git",

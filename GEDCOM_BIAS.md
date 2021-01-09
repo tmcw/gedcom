@@ -4,7 +4,8 @@ Okay, there's some debate as to _whether technology can be biased_, or is
 it just some thing that anyone can use in any way.
 
 This debate isn't useful for GEDCOM. It's so transparently biased that there's
-no argument. It allows exactly two (2) gender values. It supports the full
+no argument. It allows exactly two (2) gender values. It defines
+families as strictly between a "male" and "female" partner. It supports the full
 range of LDS sacraments, many Christian and Jewish rituals, and no religious
 events for any other religious practice. Though it is switching to Unicode,
 it previously adopted ANSEL, a character set that had no mechanism for representing

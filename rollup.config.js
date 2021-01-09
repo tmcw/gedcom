@@ -1,24 +1,29 @@
+const rollupTypescript = require("@rollup/plugin-typescript");
+
 module.exports = [
   {
-    input: "index.js",
+    input: "index.ts",
+    plugins: [rollupTypescript()],
     output: {
       file: "dist/index.js",
-      format: "cjs"
-    }
+      format: "cjs",
+    },
   },
   {
-    input: "index.js",
+    input: "index.ts",
+    plugins: [rollupTypescript()],
     output: {
-      file: "dist/index.m.s",
-      format: "esm"
-    }
+      file: "dist/index.m.js",
+      format: "esm",
+    },
   },
   {
-    input: "index.js",
+    input: "index.ts",
+    plugins: [rollupTypescript()],
     output: {
       name: "parseGedcom",
-      file: "dist/index.umd.s",
-      format: "umd"
-    }
-  }
+      file: "dist/index.umd.js",
+      format: "umd",
+    },
+  },
 ];
