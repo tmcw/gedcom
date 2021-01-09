@@ -15,8 +15,7 @@
     "parse-gedcom-d3": "./bin/parse-gedcom-d3"
   },
   "scripts": {
-    "test": "rollup -c rollup.config.js && jest",
-    "prepublish": "rollup -c rollup.config.js"
+    "test": "tap"
   },
   "keywords": [
     "gedcom",
@@ -26,13 +25,12 @@
   "author": "Tom MacWright",
   "license": "ISC",
   "dependencies": {
-    "concat-stream": "^1.4.7"
+    "@types/tap": "^14.10.1",
+    "typescript": "^4.1.3"
   },
   "devDependencies": {
-    "d3": "^5.0.0",
-    "jest": "^23.5.0",
-    "prettier": "^1.14.2",
-    "rollup": "^1.1.0"
+    "rollup": "^2.36.1",
+    "tap": "^14.11.0"
   },
   "repository": {
     "type": "git",

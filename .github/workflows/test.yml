@@ -1,0 +1,47 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter && \
+        chmod +x ./cc-test-reporter && \
+        ./cc-test-reporter before-build
+    - name: Set ENV for codeclimate (pull_request)
+      run: |
+        git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF && \
+        echo "GIT_BRANCH=${GITHUB_REF/refs\/heads\//}" >> $GITHUB_ENV && \
+        echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
+      if: github.event_name == 'pull_request'
+
+    - name: Set ENV for codeclimate (push)
+      run: |
+        echo "GIT_BRANCH=${GITHUB_REF/refs\/heads\//}" >> $GITHUB_ENV && \
+        echo "GIT_COMMIT_SHA=${GITHUB_SHA}" >> $GITHUB_ENV
+      if: github.event_name == 'push'
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: yarn install, build, and test
+      run: |
+        yarn install
+        yarn test
+    - name: Upload coverage
+      run: |
+        mkdir -p coverage
+        ./node_modules/.bin/tap --coverage-report=text-lcov > coverage/lcov.info
+        ./cc-test-reporter after-build -t lcov
+      env:
+        CC_TEST_REPORTER_ID: 0de365390b08f522f3a62e8a2206813cc4aa6154df980330d99303a2083ce5ed
