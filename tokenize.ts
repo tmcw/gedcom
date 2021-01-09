@@ -1,3 +1,5 @@
+import { FORMAL_NAMES } from "./formal_names";
+
 const cDigit = "0-9";
 const rLevel = new RegExp(`^([${cDigit}]*)`);
 const cDelim = new RegExp("(\\s+)");
@@ -13,18 +15,18 @@ const rPointer = new RegExp(
 );
 const rTag = new RegExp(`^(_?[${cAlphanum}]+)`);
 const rLineItem = new RegExp(/^(.*)/);
-// const rTerminator = new RegExp("^(\\r|\\n|\\r\\n|\\n\\r)");
 
-type Token = {
-  type: string;
-  raw: string;
-  value?: number;
+type TagName = keyof typeof FORMAL_NAMES;
+
+type Line = {
+  level: number;
+  tag: TagName;
+  xref_id?: string;
+  pointer?: string;
+  value?: string;
 };
 
-export function tokenize(line: string): Token[] {
-  const tokens: Token[] = [];
-  let buf = line.trimStart();
-
+export function tokenize(buf: string): Line {
   function expect(re: RegExp, message: string) {
     const match = buf.match(re);
     if (!match) throw new Error(message);
@@ -32,57 +34,38 @@ export function tokenize(line: string): Token[] {
     return match[1];
   }
 
-  const level = expect(rLevel, "Expected level");
-  tokens.push({
-    type: "LEVEL",
-    value: parseInt(level),
-    raw: level[0],
-  });
-
+  buf = buf.trimStart();
+  let xref_id: string | undefined = undefined;
+  const level = parseInt(expect(rLevel, "Expected level"));
   expect(rDelim, "Expected delimiter after level");
 
-  {
-    const pointer = buf.match(rPointer);
-    if (pointer) {
-      tokens.push({
-        type: "XREF_ID",
-        raw: pointer[0],
-      });
-      buf = buf.substring(pointer[0].length);
-      {
-        expect(rDelim, "Expected delimiter after pointer");
-      }
+  const xref = buf.match(rPointer);
+  if (xref) {
+    xref_id = xref[0];
+    buf = buf.substring(xref[0].length);
+    expect(rDelim, "Expected delimiter after pointer");
+  }
+
+  const tag = expect(rTag, "Expected tag") as TagName;
+
+  let line: Line = {
+    level,
+    tag,
+  };
+
+  if (xref_id) line.xref_id = xref_id;
+
+  const delim = buf.match(rDelim);
+  if (delim) {
+    buf = buf.substring(delim[0].length);
+    const pointer_match = buf.match(rPointer);
+    const value_match = buf.match(rLineItem);
+    if (pointer_match) {
+      line.pointer = pointer_match[0];
+    } else if (value_match) {
+      line.value = value_match[1];
     }
   }
 
-  tokens.push({
-    type: "TAG",
-    raw: expect(rTag, "Expected tag"),
-  });
-
-  {
-    const delim = buf.match(rDelim);
-    if (delim) {
-      buf = buf.substring(delim[0].length);
-      {
-        const pointer = buf.match(rPointer);
-        const lineItem = buf.match(rLineItem);
-        if (pointer) {
-          tokens.push({
-            type: "POINTER",
-            raw: pointer[0],
-          });
-          buf = buf.substring(pointer[0].length);
-        } else if (lineItem) {
-          tokens.push({
-            type: "LINEVALUE",
-            raw: lineItem[0],
-          });
-          buf = buf.substring(lineItem[0].length);
-        }
-      }
-    }
-  }
-
-  return tokens;
+  return line;
 }
