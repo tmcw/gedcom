@@ -1,3 +1,4 @@
+import Fs from "fs";
 import { test } from "tap";
 import { parse } from "./parse-to-unist";
 import { toD3Force } from "./to-d3-force";
@@ -145,19 +146,17 @@ test("toD3Force", (t) => {
           target: "@F1@",
           value: "@FAMILY_SPOUSE",
         },
-        {
-          source: "@F1@",
-          target: "@I1@",
-          value: "@HUSBAND",
-        },
-        {
-          source: "@F1@",
-          target: "@I2@",
-          value: "@WIFE",
-        },
       ],
     }
   );
 
+  t.end();
+});
+
+test("fuzz test with fixtures", (t) => {
+  const all = Fs.readFileSync("./fixture/all.ged", "utf8");
+  t.doesNotThrow(() => {
+    toD3Force(parse(all));
+  });
   t.end();
 });

@@ -24,11 +24,15 @@
   "dependencies": {
     "@types/graphlib": "^2.1.7",
     "@types/graphlib-dot": "^0.6.1",
+    "@types/meow": "^5.0.0",
     "@types/tap": "^14.10.1",
     "@types/unist": "^2.0.3",
+    "get-stdin": "^8.0.0",
     "graphlib": "^2.1.8",
     "graphlib-dot": "^0.6.4",
+    "meow": "^9.0.0",
     "tslib": "^2.1.0",
+    "unist-util-remove": "^2.0.1",
     "unist-util-visit-parents": "^3.1.1"
   },
   "devDependencies": {

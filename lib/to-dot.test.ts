@@ -2,7 +2,7 @@ import { test } from "tap";
 import { parse } from "./parse-to-unist";
 import { toDot } from "./to-dot";
 
-test("toD3Force", (t) => {
+test("toDot", (t) => {
   t.same(
     toDot(
       parse(`0 HEAD
@@ -60,8 +60,6 @@ test("toD3Force", (t) => {
   \"@F1@\" [label=FAM]
   \"@I1@\" -> \"@F1@\" [label=\"@FAMILY_SPOUSE\"]
   \"@I2@\" -> \"@F1@\" [label=\"@FAMILY_SPOUSE\"]
-  \"@F1@\" -> \"@I1@\" [label=\"@HUSBAND\"]
-  \"@F1@\" -> \"@I2@\" [label=\"@WIFE\"]
 }
 `
   );
