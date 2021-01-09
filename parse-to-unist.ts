@@ -16,7 +16,7 @@ export function parse(input: string): Parent {
   let lastLevel = 0;
 
   for (const line of lines) {
-    const { level, tag, value, pointer } = tokenize(line);
+    const { level, xref_id, tag, value, pointer } = tokenize(line);
     const formal_name = FORMAL_NAMES[tag];
     const node: Parent = {
       type: tag,
@@ -27,6 +27,7 @@ export function parse(input: string): Parent {
       children: [],
     };
 
+    if (xref_id) node.data!.xref_id = xref_id;
     if (pointer) node.data!.pointer = pointer;
     if (tag.startsWith("_")) node.data!.custom_tag = true;
 

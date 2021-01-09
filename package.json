@@ -22,8 +22,12 @@
   "author": "Tom MacWright",
   "license": "ISC",
   "dependencies": {
+    "@types/graphlib": "^2.1.7",
+    "@types/graphlib-dot": "^0.6.1",
     "@types/tap": "^14.10.1",
     "@types/unist": "^2.0.3",
+    "graphlib": "^2.1.8",
+    "graphlib-dot": "^0.6.4",
     "tslib": "^2.1.0",
     "unist-util-visit-parents": "^3.1.1"
   },

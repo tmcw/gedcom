@@ -142,6 +142,7 @@ test("parser - pointers", (t) => {
         {
           type: "INDI",
           data: {
+            xref_id: "@3@",
             formal_name: "INDIVIDUAL",
           },
           value: undefined,
