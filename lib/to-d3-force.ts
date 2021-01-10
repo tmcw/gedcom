@@ -12,6 +12,23 @@ type ForceData = {
   links: Link[];
 };
 
+function removeBidirectionals(linkIndex: Map<string, Link[]>, links: Link[]) {
+  const pairs = [
+    ["@HUSBAND", "@FAMILY_SPOUSE"],
+    ["@WIFE", "@FAMILY_SPOUSE"],
+    ["@FAMILY_CHILD", "@CHILD"],
+  ];
+
+  for (let [_, group] of linkIndex) {
+    pairs.forEach((pair) => {
+      const [a, b] = pair.map((key) => group.find((elem) => elem.value == key));
+      if (a && b) {
+        links.splice(links.indexOf(a), 1);
+      }
+    });
+  }
+}
+
 /**
  * Transforms a GEDCOM AST - likely produced using
  * `parse` - into a data structure suited for
@@ -60,20 +77,7 @@ export function toD3Force(root: Parent): ForceData {
       });
   });
 
-  const pairs = [
-    ["@HUSBAND", "@FAMILY_SPOUSE"],
-    ["@WIFE", "@FAMILY_SPOUSE"],
-    ["@FAMILY_CHILD", "@CHILD"],
-  ];
-
-  for (let [_, group] of linkIndex) {
-    pairs.forEach((pair) => {
-      const [a, b] = pair.map((key) => group.find((elem) => elem.value == key));
-      if (a && b) {
-        links.splice(links.indexOf(a), 1);
-      }
-    });
-  }
+  removeBidirectionals(linkIndex, links);
 
   return {
     nodes,
