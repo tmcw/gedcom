@@ -2,6 +2,8 @@
 
 A small, simple parser for [GEDCOM](http://en.wikipedia.org/wiki/GEDCOM) 5.5.1.
 
+# [API Documentation](./docs/modules.md)
+
 ### Caveats
 
 - The GEDCOM specification allows use of an ANSEL character encoding - a nearly-unknown

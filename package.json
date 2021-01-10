@@ -16,7 +16,7 @@
     "doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
     "release": "standard-version",
     "prerelease": "build",
-    "build": "microbundle"
+    "build": "microbundle && npm run doc"
   },
   "keywords": [
     "gedcom",
