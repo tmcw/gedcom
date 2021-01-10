@@ -18,7 +18,7 @@ const rLineItem = new RegExp(/^(.*)/);
 
 type TagName = keyof typeof FORMAL_NAMES;
 
-type Line = {
+export type Line = {
   level: number;
   tag: TagName;
   xref_id?: string;
