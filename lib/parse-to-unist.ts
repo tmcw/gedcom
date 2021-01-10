@@ -24,17 +24,15 @@ function lineToNode({ tag, value, xref_id, pointer }: Line) {
 }
 
 function handleContinued({ tag, value, pointer }: Line, head: Parent) {
-  if (tag === "CONC" || tag === "CONT") {
-    if (pointer) throw new Error("Cannot concatenate a pointer");
-    // If this is a NOTE tag, it may not have any text at the beginning.
-    if (!head.value) head.value = "";
-    if (tag === "CONT") head.value += "\n";
-    if (value) {
-      head.value += value;
-    }
-    return true;
+  if (!(tag === "CONC" || tag === "CONT")) return false;
+  if (pointer) throw new Error("Cannot concatenate a pointer");
+  // If this is a NOTE tag, it may not have any text at the beginning.
+  if (!head.value) head.value = "";
+  if (tag === "CONT") head.value += "\n";
+  if (value) {
+    head.value += value;
   }
-  return false;
+  return true;
 }
 
 /**
