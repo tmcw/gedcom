@@ -232,7 +232,8 @@ test("compact", (t) => {
             "BIRTH/DATE": "11 JUN 1861",
             "BIRTH/PLACE": "Idaho Falls, Bonneville, Idaho",
             "@BIRTH/FAMILY_CHILD": "@4@",
-            "@FAMILY_CHILD": "@9@",
+            "@FAMILY_CHILD": "@4@",
+            "+@FAMILY_CHILD": ["@9@"],
             "FAMILY_CHILD/PEDIGREE": "Adopted",
             "@ADOPTION/FAMILY_CHILD": "@9@",
             "ADOPTION/DATE": "16 MAR 1864",
@@ -247,5 +248,64 @@ test("compact", (t) => {
     }
   );
 
+  t.end();
+});
+
+test("multiple values for an attribute", (t) => {
+  t.same(
+    compact({
+      type: "root",
+      children: [
+        {
+          type: "INDI",
+          data: {
+            formal_name: "INDIVIDUAL",
+          },
+          value: undefined,
+          children: [
+            {
+              type: "NAME",
+              data: {
+                formal_name: "NAME",
+              },
+              value: "Joe/Williams/",
+              children: [],
+            },
+            {
+              type: "NAME",
+              data: {
+                formal_name: "NAME",
+              },
+              value: "Joe/Wiliams/",
+              children: [],
+            },
+            {
+              type: "NAME",
+              data: {
+                formal_name: "NAME",
+              },
+              value: "Joe/Trilliams/",
+              children: [],
+            },
+          ],
+        },
+      ],
+    }),
+    {
+      type: "root",
+      children: [
+        {
+          type: "INDI",
+          data: {
+            formal_name: "INDIVIDUAL",
+            NAME: "Joe/Williams/",
+            "+NAME": ["Joe/Wiliams/", "Joe/Trilliams/"],
+          },
+          value: undefined,
+          children: [],
+        },
+      ],
+    }
+  );
   t.end();
 });

@@ -4,6 +4,20 @@ import { Parent } from "unist";
 
 const rTerminator = new RegExp("(\\r|\\n|\\r\\n|\\n\\r)", "g");
 
+/**
+ * Parse a string of GEDCOM data into an unist-compatible
+ * abstract syntax tree. This is the core function for transforming
+ * GEDCOM into JSON data that captures all of its detail, but
+ * for practical usage you may also want to run `compact`
+ * on the generated syntax tree to compress attributes.
+ *
+ * **Note**: the AST format uses 'children' to indicate the children
+ * of abstract syntax tree nodes, but these are not equivalent to
+ * parent/child relationships in family data.
+ *
+ * @param input - GEDCOM data as a string
+ * @returns ast
+ */
 export function parse(input: string): Parent {
   let root: Parent = {
     type: "root",

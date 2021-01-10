@@ -26,6 +26,15 @@ type Line = {
   value?: string;
 };
 
+/**
+ * Lowest-level API to parse-gedcom: parses a single line
+ * of GEDCOM into its constituent tag, level, xref_id,
+ * and so on. It's unlikely that external applications would use this API.
+ * Instead they will more often use `parse`.
+ *
+ * @param buf - One line of GEDCOM data as a string
+ * @returns a line object.
+ */
 export function tokenize(buf: string): Line {
   function expect(re: RegExp, message: string) {
     const match = buf.match(re);

@@ -12,6 +12,15 @@ type ForceData = {
   links: Link[];
 };
 
+/**
+ * Transforms a GEDCOM AST - likely produced using
+ * `parse` - into a data structure suited for
+ * a [D3 force directed graph](https://observablehq.com/@d3/force-directed-graph)
+ * layout.
+ *
+ * @param root - Parsed GEDCOM content
+ * @returns D3-friendly JSON
+ */
 export function toD3Force(root: Parent): ForceData {
   const compacted = compact(root);
   const nodes = compacted.children;

@@ -2,6 +2,13 @@ import { Parent } from "unist";
 import { Graph } from "graphlib";
 import { toD3Force } from "./to-d3-force";
 
+/**
+ * Transforms a GEDCOM AST into a [Graphlib](https://github.com/dagrejs/graphlib)
+ * Graph object.
+ *
+ * @param root - Parsed GEDCOM content
+ * @returns graphviz Graph object
+ */
 export function toGraphlib(root: Parent): Graph {
   const { nodes, links } = toD3Force(root);
 
