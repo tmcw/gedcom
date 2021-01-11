@@ -2,7 +2,7 @@
 
 A small, simple parser for [GEDCOM](http://en.wikipedia.org/wiki/GEDCOM) 5.5.1.
 
-# [API Documentation](./docs/modules.md)
+# [API Documentation](./docs/README.md)
 
 ### Caveats
 
