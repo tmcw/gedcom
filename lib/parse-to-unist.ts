@@ -3,8 +3,6 @@ import { tokenize } from "./tokenize";
 import { FORMAL_NAMES } from "./formal_names";
 import { Parent } from "unist";
 
-const rTerminator = new RegExp("(\\r|\\n|\\r\\n|\\n\\r)", "g");
-
 function lineToNode({ tag, value, xref_id, pointer }: Line) {
   const formal_name = FORMAL_NAMES[tag];
   const node: Parent = {
@@ -49,18 +47,16 @@ function handleContinued({ tag, value, pointer }: Line, head: Parent) {
  * @param input - GEDCOM data as a string
  * @returns ast
  */
-export function parse(input: string): Parent {
+export function parse(tokens: Token[]): Parent {
   let root: Parent = {
     type: "root",
     children: [],
   };
 
-  const lines = input.split(rTerminator).filter((str) => str.trim());
-
   let stack: Parent[] = [];
   let lastLevel = 0;
 
-  for (const line of lines) {
+  for (const line of tokens) {
     const tokens = tokenize(line);
 
     if (handleContinued(tokens, stack[stack.length - 1])) {
