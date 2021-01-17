@@ -17,7 +17,7 @@ npm install -g parse-gedcom
 
 ```
 Usage
-	  $ parse-gedcom <input>
+$ parse-gedcom <input>
 	Options
 	  --type, -s   Output type (json, d3.json, dot)
 	Examples
