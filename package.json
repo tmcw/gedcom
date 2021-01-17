@@ -18,7 +18,7 @@
     "test": "tap",
     "doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
     "release": "standard-version",
-    "prerelease": "build",
+    "prerelease": "npm run build",
     "build": "microbundle && microbundle -i cli.ts -o dist/cli.js -f cjs && npm run doc"
   },
   "keywords": [
