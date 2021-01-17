@@ -8,6 +8,9 @@
   "esmodule": "dist/index.modern.js",
   "main:umd": "dist/index.umd.js",
   "unpkg": "dist/index.umd.js",
+  "bin": {
+    "parse-gedcom": "dist/cli.js"
+  },
   "files": [
     "dist"
   ],
@@ -16,7 +19,7 @@
     "doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
     "release": "standard-version",
     "prerelease": "build",
-    "build": "microbundle && npm run doc"
+    "build": "microbundle && microbundle -i cli.ts -o dist/cli.js -f cjs && npm run doc"
   },
   "keywords": [
     "gedcom",
