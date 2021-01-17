@@ -9,7 +9,7 @@ const cli = meow(
 	Usage
 	  $ parse-gedcom <input>
 	Options
-	  --type, -s   Output type
+	  --type, -s   Output type (json, d3.json, dot)
 	Examples
 	  $ parse-gedcom input.ged output.json
 `,

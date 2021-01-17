@@ -4,6 +4,26 @@ A small, simple parser for [GEDCOM](http://en.wikipedia.org/wiki/GEDCOM) 5.5.1.
 
 # [API Documentation](./docs/README.md)
 
+### Installation
+
+The `parse-gedcom` package can be added as a dependency to use in your code, or
+if you'd like to just use the CLI, install it globallly:
+
+```
+npm install -g parse-gedcom
+```
+
+### CLI
+
+```
+Usage
+	  $ parse-gedcom <input>
+	Options
+	  --type, -s   Output type (json, d3.json, dot)
+	Examples
+	  $ parse-gedcom input.ged output.json
+```
+
 ### Caveats
 
 - The GEDCOM specification allows use of an ANSEL character encoding - a nearly-unknown
