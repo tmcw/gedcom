@@ -1,5 +1,5 @@
 {
-  "name": "parse-gedcom",
+  "name": "gedcom",
   "version": "2.0.1",
   "description": "a simple and readable gedcom parser",
   "source": "index.ts",
