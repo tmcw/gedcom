@@ -9,7 +9,7 @@
   "main:umd": "dist/index.umd.js",
   "unpkg": "dist/index.umd.js",
   "bin": {
-    "parse-gedcom": "dist/cli.js"
+    "gedcom": "dist/cli.js"
   },
   "files": [
     "dist"
