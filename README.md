@@ -1,4 +1,4 @@
-# parse-gedcom
+# gedcom
 
 A small, simple parser for [GEDCOM](http://en.wikipedia.org/wiki/GEDCOM) 5.5.1.
 
@@ -6,11 +6,11 @@ A small, simple parser for [GEDCOM](http://en.wikipedia.org/wiki/GEDCOM) 5.5.1.
 
 ### Installation
 
-The `parse-gedcom` package can be added as a dependency to use in your code, or
+The `gedcom` package can be added as a dependency to use in your code, or
 if you'd like to just use the CLI, install it globallly:
 
 ```
-npm install -g parse-gedcom
+npm install -g gedcom
 ```
 
 ### CLI
@@ -21,7 +21,7 @@ $ parse-gedcom <input>
 	Options
 	  --type, -s   Output type (json, d3.json, dot)
 	Examples
-	  $ parse-gedcom input.ged output.json
+	  $ gedcom input.ged output.json
 ```
 
 ### Caveats
