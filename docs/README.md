@@ -77,7 +77,7 @@ Name | Type | Default value | Description |
 
 the same document, with attributes compacted.
 
-Defined in: [unist-compact.ts:66](https://github.com/tmcw/parse-gedcom/blob/ab412cb/lib/unist-compact.ts#L66)
+Defined in: [unist-compact.ts:66](https://github.com/tmcw/gedcom/blob/1e5d589/lib/unist-compact.ts#L66)
 
 ___
 
@@ -105,7 +105,7 @@ Name | Type | Description |
 
 ast
 
-Defined in: [parse-to-unist.ts:52](https://github.com/tmcw/parse-gedcom/blob/ab412cb/lib/parse-to-unist.ts#L52)
+Defined in: [parse-to-unist.ts:52](https://github.com/tmcw/gedcom/blob/1e5d589/lib/parse-to-unist.ts#L52)
 
 ___
 
@@ -128,7 +128,7 @@ Name | Type | Description |
 
 D3-friendly JSON
 
-Defined in: [to-d3-force.ts:41](https://github.com/tmcw/parse-gedcom/blob/ab412cb/lib/to-d3-force.ts#L41)
+Defined in: [to-d3-force.ts:41](https://github.com/tmcw/gedcom/blob/1e5d589/lib/to-d3-force.ts#L41)
 
 ___
 
@@ -150,7 +150,7 @@ Name | Type | Description |
 
 DOT-formatted graph
 
-Defined in: [to-dot.ts:13](https://github.com/tmcw/parse-gedcom/blob/ab412cb/lib/to-dot.ts#L13)
+Defined in: [to-dot.ts:13](https://github.com/tmcw/gedcom/blob/1e5d589/lib/to-dot.ts#L13)
 
 ___
 
@@ -171,7 +171,7 @@ Name | Type | Description |
 
 graphviz Graph object
 
-Defined in: [to-graphlib.ts:12](https://github.com/tmcw/parse-gedcom/blob/ab412cb/lib/to-graphlib.ts#L12)
+Defined in: [to-graphlib.ts:12](https://github.com/tmcw/gedcom/blob/1e5d589/lib/to-graphlib.ts#L12)
 
 ___
 
@@ -194,4 +194,4 @@ Name | Type | Description |
 
 a line object.
 
-Defined in: [tokenize.ts:38](https://github.com/tmcw/parse-gedcom/blob/ab412cb/lib/tokenize.ts#L38)
+Defined in: [tokenize.ts:38](https://github.com/tmcw/gedcom/blob/1e5d589/lib/tokenize.ts#L38)
