@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import Fs from "fs";
 import Path from "path";
 import meow from "meow";
