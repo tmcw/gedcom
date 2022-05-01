@@ -11,7 +11,7 @@ const cHash = "#";
 const cNonAt = `${cAlpha}${cDigit}${cDelim}${cHash}`;
 const cPointerChar = cNonAt;
 const rPointer = new RegExp(
-  `^${cAt}([${cAlphanum}])([${cPointerChar}])*${cAt}`
+  `^${cAt}([${cAlphanum}])([${cPointerChar}\\-])*${cAt}`
 );
 const rTag = new RegExp(`^(_?[${cAlphanum}]+)`);
 const rLineItem = new RegExp(/^(.*)/);
