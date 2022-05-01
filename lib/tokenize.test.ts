@@ -28,6 +28,12 @@ test("parser", (t) => {
     tag: "INDI",
   });
 
+  t.same(tokenize("0 @I-1WITHHYPHEN@ INDI"), {
+    level: 0,
+    xref_id: "@I-1WITHHYPHEN@",
+    tag: "INDI",
+  });
+
   t.same(tokenize("1 CHIL @1234@"), {
     level: 1,
     tag: "CHIL",
