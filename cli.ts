@@ -4,6 +4,7 @@ import Fs from "fs";
 import Path from "path";
 import meow from "meow";
 import getStdin from "get-stdin";
+import type { Parent } from "unist";
 import { toD3Force, parse, toDot } from "./index";
 
 const cli = meow(
@@ -32,6 +33,21 @@ const EXTENSION_TO_TYPE = {
 };
 type ExtKey = keyof typeof EXTENSION_TO_TYPE;
 
+function getOutputFromType(type: string, parsed: Parent) {
+  switch (type) {
+    case "json": {
+      return JSON.stringify(parsed, null, 2);
+    }
+    case "d3.json": {
+      return JSON.stringify(toD3Force(parsed), null, 2);
+    }
+    case "dot": {
+      return toDot(parsed);
+    }
+  }
+  return '';
+}
+
 (async () => {
   const [infile, outfile] = cli.input;
   const inputStr = infile ? Fs.readFileSync(infile, "utf8") : await getStdin();
@@ -48,22 +64,7 @@ type ExtKey = keyof typeof EXTENSION_TO_TYPE;
     }
   }
 
-  let output: string = "";
-
-  switch (type) {
-    case "json": {
-      output = JSON.stringify(parsed, null, 2);
-      break;
-    }
-    case "d3.json": {
-      output = JSON.stringify(toD3Force(parsed), null, 2);
-      break;
-    }
-    case "dot": {
-      output = toDot(parsed);
-      break;
-    }
-  }
+  const output = getOutputFromType(type, parsed);
 
   if (outfile) {
     Fs.writeFileSync(outfile, output, "utf8");
