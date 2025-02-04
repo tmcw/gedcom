@@ -2,3 +2,4 @@ family-tree.ged
 dist
 node_modules
 .nyc_output
+.tap
