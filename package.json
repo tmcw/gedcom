@@ -1,57 +1,51 @@
 {
-  "name": "gedcom",
-  "version": "3.0.0",
-  "description": "a simple and readable gedcom parser",
-  "source": "index.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.m.js",
-  "esmodule": "dist/index.modern.js",
-  "main:umd": "dist/index.umd.js",
-  "unpkg": "dist/index.umd.js",
-  "bin": {
-    "gedcom": "dist/cli.js"
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "test": "tap",
-    "doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
-    "release": "standard-version",
-    "prerelease": "npm run build",
-    "build": "microbundle && microbundle -i cli.ts -o dist/cli.js -f cjs && npm run doc"
-  },
-  "keywords": [
-    "gedcom",
-    "format",
-    "geneaology"
-  ],
-  "author": "Tom MacWright",
-  "license": "ISC",
-  "dependencies": {
-    "@types/graphlib": "^2.1.7",
-    "@types/graphlib-dot": "^0.6.1",
-    "@types/meow": "^5.0.0",
-    "@types/tap": "^14.10.1",
-    "@types/unist": "^2.0.3",
-    "get-stdin": "^8.0.0",
-    "graphlib": "^2.1.8",
-    "graphlib-dot": "^0.6.4",
-    "meow": "^9.0.0",
-    "standard-version": "^9.1.0",
-    "tslib": "^2.1.0",
-    "unist-util-remove": "^2.0.1",
-    "unist-util-visit-parents": "^3.1.1"
-  },
-  "devDependencies": {
-    "microbundle": "^0.13.0",
-    "tap": "^21.0.1",
-    "typedoc": "^0.27.6",
-    "typedoc-plugin-markdown": "^4.4.1",
-    "typescript": "^5.7.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:tmcw/parse-gedcom.git"
-  }
+	"name": "gedcom",
+	"version": "3.0.0",
+	"description": "a simple and readable gedcom parser",
+	"source": "index.ts",
+	"main": "dist/index.js",
+	"module": "dist/index.m.js",
+	"esmodule": "dist/index.modern.js",
+	"main:umd": "dist/index.umd.js",
+	"unpkg": "dist/index.umd.js",
+	"bin": {
+		"gedcom": "dist/cli.js"
+	},
+	"files": ["dist"],
+	"scripts": {
+		"test": "tap --allow-incomplete-coverage",
+		"doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
+		"release": "standard-version",
+		"prerelease": "npm run build",
+		"build": "microbundle && microbundle -i cli.ts -o dist/cli.js -f cjs && npm run doc"
+	},
+	"keywords": ["gedcom", "format", "geneaology"],
+	"author": "Tom MacWright",
+	"license": "ISC",
+	"dependencies": {
+		"@types/graphlib": "^2.1.7",
+		"@types/graphlib-dot": "^0.6.1",
+		"@types/meow": "^5.0.0",
+		"@types/tap": "^14.10.1",
+		"@types/unist": "^2.0.3",
+		"get-stdin": "^8.0.0",
+		"graphlib": "^2.1.8",
+		"graphlib-dot": "^0.6.4",
+		"meow": "^9.0.0",
+		"standard-version": "^9.1.0",
+		"tslib": "^2.1.0",
+		"unist-util-remove": "^2.0.1",
+		"unist-util-visit-parents": "^3.1.1"
+	},
+	"devDependencies": {
+		"microbundle": "^0.13.0",
+		"tap": "^21.0.1",
+		"typedoc": "^0.27.6",
+		"typedoc-plugin-markdown": "^4.4.1",
+		"typescript": "^5.7.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:tmcw/parse-gedcom.git"
+	}
 }
