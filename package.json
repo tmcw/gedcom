@@ -1,6 +1,6 @@
 {
 	"name": "gedcom",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "a simple and readable gedcom parser",
 	"source": "index.ts",
 	"main": "dist/index.js",
@@ -11,7 +11,9 @@
 	"bin": {
 		"gedcom": "dist/cli.js"
 	},
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"test": "tap --allow-incomplete-coverage",
 		"doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
@@ -19,7 +21,11 @@
 		"prerelease": "npm run build",
 		"build": "microbundle && microbundle -i cli.ts -o dist/cli.js -f cjs && npm run doc"
 	},
-	"keywords": ["gedcom", "format", "geneaology"],
+	"keywords": [
+		"gedcom",
+		"format",
+		"geneaology"
+	],
 	"author": "Tom MacWright",
 	"license": "ISC",
 	"dependencies": {
