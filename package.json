@@ -11,21 +11,14 @@
 	"bin": {
 		"gedcom": "dist/cli.js"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"scripts": {
 		"test": "tap --allow-incomplete-coverage",
 		"doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
-		"release": "standard-version",
-		"prerelease": "npm run build",
+		"prepublishOnly": "npm run build",
 		"build": "microbundle && microbundle -i cli.ts -o dist/cli.js -f cjs && npm run doc"
 	},
-	"keywords": [
-		"gedcom",
-		"format",
-		"geneaology"
-	],
+	"keywords": ["gedcom", "format", "geneaology"],
 	"author": "Tom MacWright",
 	"license": "ISC",
 	"dependencies": {
@@ -38,7 +31,6 @@
 		"graphlib": "^2.1.8",
 		"graphlib-dot": "^0.6.4",
 		"meow": "^9.0.0",
-		"standard-version": "^9.1.0",
 		"tslib": "^2.1.0",
 		"unist-util-remove": "^2.0.1",
 		"unist-util-visit-parents": "^3.1.1"
