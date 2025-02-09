@@ -1,7 +1,7 @@
 import { test, expect } from "vitest";
 import { parse } from "./parse-to-unist";
 
-test("parser", (t) => {
+test("parser", () => {
   expect(
     parse(
       `0 INDI
@@ -57,7 +57,7 @@ test("parser", (t) => {
   });
 });
 
-test("parser - multiple root entities", (t) => {
+test("parser - multiple root entities", () => {
   expect(
     parse(
       `0 INDI
@@ -104,7 +104,7 @@ test("parser - multiple root entities", (t) => {
   });
 });
 
-test("parser - pointers", (t) => {
+test("parser - pointers", () => {
   expect(
     parse(
       `0 @3@ INDI
@@ -271,36 +271,33 @@ test("parser - pointers", (t) => {
   });
 });
 
-test("parser - concatenation", (t) => {
-  t.same(
+test("parser - concatenation", () => {
+  expect(
     parse(`
-0 SOUR Waters, Henry F., Genealogical Gleanings in England: Abstracts of W
-1 CONC ills Relating to Early American Families. 2 vols., reprint 1901, 190
-1 CONC 7. Baltimore: Genealogical Publishing Co., 1981.
-1 CONT Stored in Family History Library book 942 D2wh; films 481,057-58 Vol 2, pa 
-1 CONC ge 388.`).children[0].data?.value,
+  0 SOUR Waters, Henry F., Genealogical Gleanings in England: Abstracts of W
+  1 CONC ills Relating to Early American Families. 2 vols., reprint 1901, 190
+  1 CONC 7. Baltimore: Genealogical Publishing Co., 1981.
+  1 CONT Stored in Family History Library book 942 D2wh; films 481,057-58 Vol 2, pa 
+  1 CONC ge 388.`).children[0].data?.value,
+  ).toEqual(
     "Waters, Henry F., Genealogical Gleanings in England: Abstracts of Wills Relating to Early American Families. 2 vols., reprint 1901, 1907. Baltimore: Genealogical Publishing Co., 1981.\nStored in Family History Library book 942 D2wh; films 481,057-58 Vol 2, pa ge 388.",
   );
-  t.end();
 });
 
-test("parser - concatenation", (t) => {
-  t.throws(() => {
+test("parser - concatenation", () => {
+  expect(() => {
     parse(`
 0 SOUR Waters, Henry F., Genealogical Gleanings in England: Abstracts of W
 1 CONC ills Relating to Early American Families. 2 vols., reprint 1901, 190
 1 CONC @123@`).children[0].data?.value;
-  });
-  t.end();
+  }).toThrow();
 });
 
 test("parser - error, too large a jump", (t) => {
-  t.throws(() => {
+  expect(() => {
     parse(
       `0 INDI
     2 BIRT`,
     );
-  });
-
-  t.end();
+  }).toThrow();
 });

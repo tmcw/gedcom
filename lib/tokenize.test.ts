@@ -1,61 +1,57 @@
-import { test } from "tap";
+import { test, expect } from "vitest";
 import { tokenize } from "./tokenize";
 
-test("parser", (t) => {
-  t.same(tokenize("0 HEAD"), { level: 0, tag: "HEAD" });
+test("parser", () => {
+  expect(tokenize("0 HEAD")).toEqual({ level: 0, tag: "HEAD" });
 
-  t.same(tokenize("  \t 1 NAME Will /Rogers/"), {
+  expect(tokenize("  \t 1 NAME Will /Rogers/")).toEqual({
     level: 1,
     tag: "NAME",
     value: "Will /Rogers/",
   });
 
-  t.same(tokenize("  \t 1 SOUR SPACE AFTER "), {
+  expect(tokenize("  \t 1 SOUR SPACE AFTER ")).toEqual({
     level: 1,
     tag: "SOUR",
     value: "SPACE AFTER ",
   });
 
-  t.same(tokenize("12 _USER_DEFINED_TAG X"), {
+  expect(tokenize("12 _USER_DEFINED_TAG X")).toEqual({
     level: 12,
     tag: "_USER_DEFINED_TAG",
     value: "X",
   });
 
-  t.same(tokenize("0 @I1@ INDI"), {
+  expect(tokenize("0 @I1@ INDI")).toEqual({
     level: 0,
     xref_id: "@I1@",
     tag: "INDI",
   });
 
-  t.same(tokenize("0 @I-1WITHHYPHEN@ INDI"), {
+  expect(tokenize("0 @I-1WITHHYPHEN@ INDI")).toEqual({
     level: 0,
     xref_id: "@I-1WITHHYPHEN@",
     tag: "INDI",
   });
 
-  t.same(tokenize("1 CHIL @1234@"), {
+  expect(tokenize("1 CHIL @1234@")).toEqual({
     level: 1,
     tag: "CHIL",
     pointer: "@1234@",
   });
 
-  t.same(tokenize("0 INDI"), {
+  expect(tokenize("0 INDI")).toEqual({
     level: 0,
     tag: "INDI",
   });
-
-  t.end();
 });
 
-test("parser error conditions", (t) => {
-  t.throws(() => {
+test("parser error conditions", () => {
+  expect(() => {
     tokenize("1");
-  });
+  }).toThrow();
 
-  t.throws(() => {
+  expect(() => {
     tokenize("01 INDI");
-  });
-
-  t.end();
+  }).toThrow();
 });

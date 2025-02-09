@@ -1,5 +1,5 @@
-import remove from "unist-util-remove";
-import visit from "unist-util-visit-parents";
+import { remove } from "unist-util-remove";
+import { visitParents } from "unist-util-visit-parents";
 import type { GEDCOMData, Parent } from "./types";
 
 function addValue(data: GEDCOMData, path: string, value: any) {
@@ -71,7 +71,7 @@ export function compact(
   remove(root, removeNodes);
   for (const child of root.children) {
     if (!child.data) child.data = {};
-    visit(child, (node, ancestors) => {
+    visitParents(child, (node, ancestors) => {
       const path = ancestors
         .slice(1)
         .concat(node)

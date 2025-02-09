@@ -1,8 +1,8 @@
-import { test } from "tap";
+import { test, expect } from "vitest";
 import { compact } from "./unist-compact";
 
-test("compact", (t) => {
-  t.same(
+test("compact", () => {
+  expect(
     compact({
       type: "root",
       children: [
@@ -48,23 +48,22 @@ test("compact", (t) => {
         },
       ],
     }),
-    {
-      type: "root",
-      children: [
-        {
-          type: "INDI",
-          data: {
-            formal_name: "INDIVIDUAL",
-            "BIRTH/DATE": "12 MAY 1920",
-            "DEATH/DATE": "1960",
-          },
-          children: [],
+  ).toEqual({
+    type: "root",
+    children: [
+      {
+        type: "INDI",
+        data: {
+          formal_name: "INDIVIDUAL",
+          "BIRTH/DATE": "12 MAY 1920",
+          "DEATH/DATE": "1960",
         },
-      ],
-    },
-  );
+        children: [],
+      },
+    ],
+  });
 
-  t.same(
+  expect(
     compact({
       type: "root",
       children: [
@@ -207,38 +206,35 @@ test("compact", (t) => {
         },
       ],
     }),
-    {
-      type: "root",
-      children: [
-        {
-          type: "INDI",
-          data: {
-            formal_name: "INDIVIDUAL",
-            NAME: "Joe/Williams/",
-            SEX: "M",
-            "BIRTH/DATE": "11 JUN 1861",
-            "BIRTH/PLACE": "Idaho Falls, Bonneville, Idaho",
-            "@BIRTH/FAMILY_CHILD": "@4@",
-            "@FAMILY_CHILD": "@4@",
-            "+@FAMILY_CHILD": ["@9@"],
-            "FAMILY_CHILD/PEDIGREE": "Adopted",
-            "@ADOPTION/FAMILY_CHILD": "@9@",
-            "ADOPTION/DATE": "16 MAR 1864",
-            "@SEALING_CHILD/FAMILY_CHILD": "@9@",
-            "SEALING_CHILD/DATE": "2 OCT 1987",
-            "SEALING_CHILD/TEMPLE": "SLAKE",
-          },
-          children: [],
+  ).toEqual({
+    type: "root",
+    children: [
+      {
+        type: "INDI",
+        data: {
+          formal_name: "INDIVIDUAL",
+          NAME: "Joe/Williams/",
+          SEX: "M",
+          "BIRTH/DATE": "11 JUN 1861",
+          "BIRTH/PLACE": "Idaho Falls, Bonneville, Idaho",
+          "@BIRTH/FAMILY_CHILD": "@4@",
+          "@FAMILY_CHILD": "@4@",
+          "+@FAMILY_CHILD": ["@9@"],
+          "FAMILY_CHILD/PEDIGREE": "Adopted",
+          "@ADOPTION/FAMILY_CHILD": "@9@",
+          "ADOPTION/DATE": "16 MAR 1864",
+          "@SEALING_CHILD/FAMILY_CHILD": "@9@",
+          "SEALING_CHILD/DATE": "2 OCT 1987",
+          "SEALING_CHILD/TEMPLE": "SLAKE",
         },
-      ],
-    },
-  );
-
-  t.end();
+        children: [],
+      },
+    ],
+  });
 });
 
-test("multiple values for an attribute", (t) => {
-  t.same(
+test("multiple values for an attribute", () => {
+  expect(
     compact({
       type: "root",
       children: [
@@ -276,20 +272,18 @@ test("multiple values for an attribute", (t) => {
         },
       ],
     }),
-    {
-      type: "root",
-      children: [
-        {
-          type: "INDI",
-          data: {
-            formal_name: "INDIVIDUAL",
-            NAME: "Joe/Williams/",
-            "+NAME": ["Joe/Wiliams/", "Joe/Trilliams/"],
-          },
-          children: [],
+  ).toEqual({
+    type: "root",
+    children: [
+      {
+        type: "INDI",
+        data: {
+          formal_name: "INDIVIDUAL",
+          NAME: "Joe/Williams/",
+          "+NAME": ["Joe/Wiliams/", "Joe/Trilliams/"],
         },
-      ],
-    },
-  );
-  t.end();
+        children: [],
+      },
+    ],
+  });
 });

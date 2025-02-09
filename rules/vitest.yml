@@ -1,0 +1,6 @@
+id: vitest
+language: typescript
+severity: error
+rule:
+  pattern: t.same($$A, $$B)
+fix: expect($$A).toEqual($$B)
