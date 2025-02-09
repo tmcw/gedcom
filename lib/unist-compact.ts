@@ -1,6 +1,4 @@
-// @ts-nocheck TypeScript is wrong about this and I am too annoyed to fight it.
 import { remove } from "unist-util-remove";
-// unist-util-remove does have a named export.
 import { visitParents } from "unist-util-visit-parents";
 import type { GEDCOMData, Parent } from "./types.js";
 
