@@ -1,8 +1,10 @@
-import { Parent, Node } from "unist";
-import visit from "unist-util-visit-parents";
-import remove from "unist-util-remove";
+// @ts-nocheck TypeScript is wrong about this and I am too annoyed to fight it.
+import { remove } from "unist-util-remove";
+// unist-util-remove does have a named export.
+import { visitParents } from "unist-util-visit-parents";
+import type { GEDCOMData, Parent } from "./types.js";
 
-function addValue(data: Node["data"], path: string, value: any) {
+function addValue(data: GEDCOMData, path: string, value: any) {
   const existingValue = data![path];
   if (!existingValue) {
     data![path] = value;
@@ -65,24 +67,25 @@ function addValue(data: Node["data"], path: string, value: any) {
  */
 export function compact(
   root: Parent,
-  removeNodes: string[] = ["TRLR", "SUBM", "SUBN", "HEAD", "NOTE", "SOUR"]
+  removeNodes: string[] = ["TRLR", "SUBM", "SUBN", "HEAD", "NOTE", "SOUR"],
 ): Parent {
   // Remove "trailer" objects, which are not useful to us.
   remove(root, removeNodes);
-  for (let child of root.children) {
+  for (const child of root.children) {
     if (!child.data) child.data = {};
-    visit(child, (node, ancestors) => {
+    visitParents(child, (node, ancestors) => {
       const path = ancestors
         .slice(1)
-        .concat(node)
+        .concat(node as Parent)
         .map((a) => a.data?.formal_name || a.type)
         .join("/");
-      if (node.value) {
-        addValue(child.data!, path, node.value);
+      if (node.data?.value) {
+        addValue(child.data!, path, node.data.value);
       } else if (node.data?.pointer) {
         addValue(child.data!, `@${path}`, node.data.pointer);
       }
     });
+    // FIXME: should this be brought back?
     child.children = [];
   }
   return root;

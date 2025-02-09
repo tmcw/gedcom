@@ -1,8 +1,8 @@
-import { test } from "tap";
-import { compact } from "./unist-compact";
+import { expect, test } from "vitest";
+import { compact } from "./unist-compact.js";
 
-test("compact", (t) => {
-  t.same(
+test("compact", () => {
+  expect(
     compact({
       type: "root",
       children: [
@@ -11,21 +11,19 @@ test("compact", (t) => {
           data: {
             formal_name: "INDIVIDUAL",
           },
-          value: undefined,
           children: [
             {
               type: "BIRT",
               data: {
                 formal_name: "BIRTH",
               },
-              value: undefined,
               children: [
                 {
                   type: "DATE",
                   data: {
                     formal_name: "DATE",
+                    value: "12 MAY 1920",
                   },
-                  value: "12 MAY 1920",
                   children: [],
                 },
               ],
@@ -35,14 +33,13 @@ test("compact", (t) => {
               data: {
                 formal_name: "DEATH",
               },
-              value: undefined,
               children: [
                 {
                   type: "DATE",
                   data: {
                     formal_name: "DATE",
+                    value: "1960",
                   },
-                  value: "1960",
                   children: [],
                 },
               ],
@@ -51,24 +48,22 @@ test("compact", (t) => {
         },
       ],
     }),
-    {
-      type: "root",
-      children: [
-        {
-          type: "INDI",
-          data: {
-            formal_name: "INDIVIDUAL",
-            "BIRTH/DATE": "12 MAY 1920",
-            "DEATH/DATE": "1960",
-          },
-          value: undefined,
-          children: [],
+  ).toEqual({
+    type: "root",
+    children: [
+      {
+        type: "INDI",
+        data: {
+          formal_name: "INDIVIDUAL",
+          "BIRTH/DATE": "12 MAY 1920",
+          "DEATH/DATE": "1960",
         },
-      ],
-    }
-  );
+        children: [],
+      },
+    ],
+  });
 
-  t.same(
+  expect(
     compact({
       type: "root",
       children: [
@@ -77,22 +72,21 @@ test("compact", (t) => {
           data: {
             formal_name: "INDIVIDUAL",
           },
-          value: undefined,
           children: [
             {
               type: "NAME",
               data: {
                 formal_name: "NAME",
+                value: "Joe/Williams/",
               },
-              value: "Joe/Williams/",
               children: [],
             },
             {
               type: "SEX",
               data: {
                 formal_name: "SEX",
+                value: "M",
               },
-              value: "M",
               children: [],
             },
             {
@@ -100,22 +94,21 @@ test("compact", (t) => {
               data: {
                 formal_name: "BIRTH",
               },
-              value: undefined,
               children: [
                 {
                   type: "DATE",
                   data: {
                     formal_name: "DATE",
+                    value: "11 JUN 1861",
                   },
-                  value: "11 JUN 1861",
                   children: [],
                 },
                 {
                   type: "PLAC",
                   data: {
                     formal_name: "PLACE",
+                    value: "Idaho Falls, Bonneville, Idaho",
                   },
-                  value: "Idaho Falls, Bonneville, Idaho",
                   children: [],
                 },
                 {
@@ -124,7 +117,6 @@ test("compact", (t) => {
                     formal_name: "FAMILY_CHILD",
                     pointer: "@4@",
                   },
-                  value: undefined,
                   children: [],
                 },
               ],
@@ -135,7 +127,6 @@ test("compact", (t) => {
                 formal_name: "FAMILY_CHILD",
                 pointer: "@4@",
               },
-              value: undefined,
               children: [],
             },
             {
@@ -144,14 +135,13 @@ test("compact", (t) => {
                 formal_name: "FAMILY_CHILD",
                 pointer: "@9@",
               },
-              value: undefined,
               children: [
                 {
                   type: "PEDI",
                   data: {
                     formal_name: "PEDIGREE",
+                    value: "Adopted",
                   },
-                  value: "Adopted",
                   children: [],
                 },
               ],
@@ -161,7 +151,6 @@ test("compact", (t) => {
               data: {
                 formal_name: "ADOPTION",
               },
-              value: undefined,
               children: [
                 {
                   type: "FAMC",
@@ -169,15 +158,14 @@ test("compact", (t) => {
                     formal_name: "FAMILY_CHILD",
                     pointer: "@9@",
                   },
-                  value: undefined,
                   children: [],
                 },
                 {
                   type: "DATE",
                   data: {
                     formal_name: "DATE",
+                    value: "16 MAR 1864",
                   },
-                  value: "16 MAR 1864",
                   children: [],
                 },
               ],
@@ -187,7 +175,6 @@ test("compact", (t) => {
               data: {
                 formal_name: "SEALING_CHILD",
               },
-              value: undefined,
               children: [
                 {
                   type: "FAMC",
@@ -195,23 +182,22 @@ test("compact", (t) => {
                     formal_name: "FAMILY_CHILD",
                     pointer: "@9@",
                   },
-                  value: undefined,
                   children: [],
                 },
                 {
                   type: "DATE",
                   data: {
                     formal_name: "DATE",
+                    value: "2 OCT 1987",
                   },
-                  value: "2 OCT 1987",
                   children: [],
                 },
                 {
                   type: "TEMP",
                   data: {
                     formal_name: "TEMPLE",
+                    value: "SLAKE",
                   },
-                  value: "SLAKE",
                   children: [],
                 },
               ],
@@ -220,39 +206,35 @@ test("compact", (t) => {
         },
       ],
     }),
-    {
-      type: "root",
-      children: [
-        {
-          type: "INDI",
-          data: {
-            formal_name: "INDIVIDUAL",
-            NAME: "Joe/Williams/",
-            SEX: "M",
-            "BIRTH/DATE": "11 JUN 1861",
-            "BIRTH/PLACE": "Idaho Falls, Bonneville, Idaho",
-            "@BIRTH/FAMILY_CHILD": "@4@",
-            "@FAMILY_CHILD": "@4@",
-            "+@FAMILY_CHILD": ["@9@"],
-            "FAMILY_CHILD/PEDIGREE": "Adopted",
-            "@ADOPTION/FAMILY_CHILD": "@9@",
-            "ADOPTION/DATE": "16 MAR 1864",
-            "@SEALING_CHILD/FAMILY_CHILD": "@9@",
-            "SEALING_CHILD/DATE": "2 OCT 1987",
-            "SEALING_CHILD/TEMPLE": "SLAKE",
-          },
-          value: undefined,
-          children: [],
+  ).toEqual({
+    type: "root",
+    children: [
+      {
+        type: "INDI",
+        data: {
+          formal_name: "INDIVIDUAL",
+          NAME: "Joe/Williams/",
+          SEX: "M",
+          "BIRTH/DATE": "11 JUN 1861",
+          "BIRTH/PLACE": "Idaho Falls, Bonneville, Idaho",
+          "@BIRTH/FAMILY_CHILD": "@4@",
+          "@FAMILY_CHILD": "@4@",
+          "+@FAMILY_CHILD": ["@9@"],
+          "FAMILY_CHILD/PEDIGREE": "Adopted",
+          "@ADOPTION/FAMILY_CHILD": "@9@",
+          "ADOPTION/DATE": "16 MAR 1864",
+          "@SEALING_CHILD/FAMILY_CHILD": "@9@",
+          "SEALING_CHILD/DATE": "2 OCT 1987",
+          "SEALING_CHILD/TEMPLE": "SLAKE",
         },
-      ],
-    }
-  );
-
-  t.end();
+        children: [],
+      },
+    ],
+  });
 });
 
-test("multiple values for an attribute", (t) => {
-  t.same(
+test("multiple values for an attribute", () => {
+  expect(
     compact({
       type: "root",
       children: [
@@ -261,51 +243,47 @@ test("multiple values for an attribute", (t) => {
           data: {
             formal_name: "INDIVIDUAL",
           },
-          value: undefined,
           children: [
             {
               type: "NAME",
               data: {
                 formal_name: "NAME",
+                value: "Joe/Williams/",
               },
-              value: "Joe/Williams/",
               children: [],
             },
             {
               type: "NAME",
               data: {
                 formal_name: "NAME",
+                value: "Joe/Wiliams/",
               },
-              value: "Joe/Wiliams/",
               children: [],
             },
             {
               type: "NAME",
               data: {
                 formal_name: "NAME",
+                value: "Joe/Trilliams/",
               },
-              value: "Joe/Trilliams/",
               children: [],
             },
           ],
         },
       ],
     }),
-    {
-      type: "root",
-      children: [
-        {
-          type: "INDI",
-          data: {
-            formal_name: "INDIVIDUAL",
-            NAME: "Joe/Williams/",
-            "+NAME": ["Joe/Wiliams/", "Joe/Trilliams/"],
-          },
-          value: undefined,
-          children: [],
+  ).toEqual({
+    type: "root",
+    children: [
+      {
+        type: "INDI",
+        data: {
+          formal_name: "INDIVIDUAL",
+          NAME: "Joe/Williams/",
+          "+NAME": ["Joe/Wiliams/", "Joe/Trilliams/"],
         },
-      ],
-    }
-  );
-  t.end();
+        children: [],
+      },
+    ],
+  });
 });

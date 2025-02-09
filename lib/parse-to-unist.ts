@@ -1,9 +1,9 @@
-import type { Line } from "./tokenize";
-import { tokenize } from "./tokenize";
-import { FORMAL_NAMES } from "./formal_names";
-import { Parent } from "unist";
+import { FORMAL_NAMES } from "./formal_names.js";
+import type { Line } from "./tokenize.js";
+import { tokenize } from "./tokenize.js";
+import type { Parent } from "./types.js";
 
-const rTerminator = new RegExp("(\\r|\\n|\\r\\n|\\n\\r)", "g");
+const rTerminator = /(\r|\n|\r\n|\n\r)/g;
 
 function lineToNode({ tag, value, xref_id, pointer }: Line) {
   const formal_name = FORMAL_NAMES[tag];
@@ -11,8 +11,8 @@ function lineToNode({ tag, value, xref_id, pointer }: Line) {
     type: tag,
     data: {
       formal_name,
+      ...(value !== undefined ? { value } : {}),
     },
-    value,
     children: [],
   };
 
@@ -27,10 +27,12 @@ function handleContinued({ tag, value, pointer }: Line, head: Parent) {
   if (!(tag === "CONC" || tag === "CONT")) return false;
   if (pointer) throw new Error("Cannot concatenate a pointer");
   // If this is a NOTE tag, it may not have any text at the beginning.
-  if (!head.value) head.value = "";
-  if (tag === "CONT") head.value += "\n";
-  if (value) {
-    head.value += value;
+  if (head.data) {
+    if (!head.data.value) head.data.value = "";
+    if (tag === "CONT") head.data.value += "\n";
+    if (value) {
+      head.data.value += value;
+    }
   }
   return true;
 }
@@ -50,7 +52,8 @@ function handleContinued({ tag, value, pointer }: Line, head: Parent) {
  * @returns ast
  */
 export function parse(input: string): Parent {
-  let root: Parent = {
+  const root: Parent = {
+    data: {},
     type: "root",
     children: [],
   };
@@ -70,10 +73,10 @@ export function parse(input: string): Parent {
     const node = lineToNode(tokens);
     const { level } = tokens;
 
-    if (level == 0) {
+    if (level === 0) {
       root.children.push(node);
       stack = [node];
-    } else if (lastLevel == level - 1 || level <= lastLevel) {
+    } else if (lastLevel === level - 1 || level <= lastLevel) {
       for (let i = 0; i <= lastLevel - level; i++) {
         stack.pop();
       }
@@ -81,7 +84,7 @@ export function parse(input: string): Parent {
       stack.push(node);
     } else {
       throw new Error(
-        `Illegal nesting: transition from ${lastLevel} to ${level}`
+        `Illegal nesting: transition from ${lastLevel} to ${level}`,
       );
     }
     lastLevel = level;

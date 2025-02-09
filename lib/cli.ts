@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import Fs from "fs";
-import Path from "path";
-import meow from "meow";
+import * as Fs from "node:fs";
+import * as Path from "node:path";
 import getStdin from "get-stdin";
-import type { Parent } from "unist";
-import { toD3Force, parse, toDot } from "./index";
+import meow from "meow";
+import { parse, toD3Force, toDot } from "./index.js";
+import type { Parent } from "./types.js";
 
 const cli = meow(
   `
@@ -17,13 +17,14 @@ const cli = meow(
 	  $ parse-gedcom input.ged output.json
 `,
   {
+    importMeta: import.meta,
     flags: {
       type: {
         type: "string",
-        alias: "t",
+        shortFlag: "t",
       },
     },
-  }
+  },
 );
 
 const EXTENSION_TO_TYPE = {
@@ -45,7 +46,7 @@ function getOutputFromType(type: string, parsed: Parent) {
       return toDot(parsed);
     }
   }
-  return '';
+  return "";
 }
 
 (async () => {

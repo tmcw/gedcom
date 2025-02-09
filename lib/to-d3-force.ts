@@ -1,5 +1,5 @@
-import { Node, Parent } from "unist";
-import { compact } from "./unist-compact";
+import type { Node, Parent } from "./types.js";
+import { compact } from "./unist-compact.js";
 
 type Link = {
   source: string;
@@ -8,7 +8,7 @@ type Link = {
 };
 
 type ForceData = {
-  nodes: Node[];
+  nodes: (Node | Parent)[];
   links: Link[];
 };
 
@@ -19,13 +19,15 @@ function removeBidirectionals(linkIndex: Map<string, Link[]>, links: Link[]) {
     ["@FAMILY_CHILD", "@CHILD"],
   ];
 
-  for (let [_, group] of linkIndex) {
-    pairs.forEach((pair) => {
-      const [a, b] = pair.map((key) => group.find((elem) => elem.value == key));
+  for (const [_, group] of linkIndex) {
+    for (const pair of pairs) {
+      const [a, b] = pair.map((key) =>
+        group.find((elem) => elem.value === key),
+      );
       if (a && b) {
         links.splice(links.indexOf(a), 1);
       }
-    });
+    }
   }
 }
 
@@ -43,39 +45,39 @@ export function toD3Force(root: Parent): ForceData {
   const nodes = compacted.children;
 
   const index = new Set<string>(
-    nodes.map((child) => child.data?.xref_id as string).filter(Boolean)
+    nodes.map((child) => child.data?.xref_id as string).filter(Boolean),
   );
 
   const links: Link[] = [];
   const linkIndex = new Map<string, Link[]>();
 
-  nodes.forEach((node) => {
-    if (!node.data) return;
-    Object.entries(node.data)
-      .filter(([key, _]) => key.startsWith("@"))
-      .forEach(([key, value]) => {
-        if (!index.has(value as string)) {
-          throw new Error(`Undefined reference: ${value}`);
-        }
-        if (!node.data?.xref_id) {
-          throw new Error(`Link from node with no xref id`);
-        }
-        const source = node.data?.xref_id as string;
-        const target = value as string;
-        const link = {
-          source,
-          target,
-          value: key,
-        };
-        links.push(link);
-        const idxKey = [source, target].sort().join("/");
-        if (!linkIndex.has(idxKey)) {
-          linkIndex.set(idxKey, [link]);
-        } else {
-          linkIndex.get(idxKey)!.push(link);
-        }
-      });
-  });
+  for (const node of nodes) {
+    if (!node.data) continue;
+    for (const [key, value] of Object.entries(node.data).filter(([key, _]) =>
+      key.startsWith("@"),
+    )) {
+      if (!index.has(value as string)) {
+        throw new Error(`Undefined reference: ${value}`);
+      }
+      if (!node.data?.xref_id) {
+        throw new Error(`Link from node with no xref id`);
+      }
+      const source = node.data?.xref_id as string;
+      const target = value as string;
+      const link = {
+        source,
+        target,
+        value: key,
+      };
+      links.push(link);
+      const idxKey = [source, target].sort().join("/");
+      if (!linkIndex.has(idxKey)) {
+        linkIndex.set(idxKey, [link]);
+      } else {
+        linkIndex.get(idxKey)!.push(link);
+      }
+    }
+  }
 
   removeBidirectionals(linkIndex, links);
 
