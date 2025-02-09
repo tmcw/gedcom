@@ -7,7 +7,10 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
+      '@biomejs/biome':
+        specifier: ^1.9.4
+        version: 1.9.4
       '@types/graphlib':
         specifier: ^2.1.12
         version: 2.1.12
@@ -29,19 +32,6 @@ importers:
       meow:
         specifier: ^13.2.0
         version: 13.2.0
-      tslib:
-        specifier: ^2.8.1
-        version: 2.8.1
-      unist-util-remove:
-        specifier: ^4.0.0
-        version: 4.0.0
-      unist-util-visit-parents:
-        specifier: ^6.0.1
-        version: 6.0.1
-    devDependencies:
-      '@biomejs/biome':
-        specifier: ^1.9.4
-        version: 1.9.4
       microbundle:
         specifier: ^0.15.1
         version: 0.15.1
@@ -54,6 +44,18 @@ importers:
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
+      unist-util-remove:
+        specifier: ^4.0.0
+        version: 4.0.0
+      unist-util-visit-parents:
+        specifier: ^6.0.1
+        version: 6.0.1
+      vite:
+        specifier: ^6.1.0
+        version: 6.1.0(@types/node@22.13.1)(terser@5.38.1)(yaml@2.7.0)
+      vite-plugin-externalize-deps:
+        specifier: ^0.9.0
+        version: 0.9.0(vite@6.1.0(@types/node@22.13.1)(terser@5.38.1)(yaml@2.7.0))
       vitest:
         specifier: ^3.0.5
         version: 3.0.5(@types/node@22.13.1)(terser@5.38.1)(yaml@2.7.0)
@@ -2603,6 +2605,11 @@ packages:
     resolution: {integrity: sha512-02JEJl7SbtwSDJdYS537nU6l+ktdvcREfLksk/NDAqtdKWGqHl+joXzEubHROmS3E6pip+Xgu2tFezMu75jH7A==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
+
+  vite-plugin-externalize-deps@0.9.0:
+    resolution: {integrity: sha512-wg3qb5gCy2d1KpPKyD9wkXMcYJ84yjgziHrStq9/8R7chhUC73mhQz+tVtvhFiICQHsBn1pnkY4IBbPqF9JHNw==}
+    peerDependencies:
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
   vite@6.1.0:
     resolution: {integrity: sha512-RjjMipCKVoR4hVfPY6GQTgveinjNuyLw+qruksLDvA5ktI1150VmcMBKmQaEWJhg/j6Uaf6dNCNA0AfdzUb/hQ==}
@@ -5538,6 +5545,10 @@ snapshots:
       - terser
       - tsx
       - yaml
+
+  vite-plugin-externalize-deps@0.9.0(vite@6.1.0(@types/node@22.13.1)(terser@5.38.1)(yaml@2.7.0)):
+    dependencies:
+      vite: 6.1.0(@types/node@22.13.1)(terser@5.38.1)(yaml@2.7.0)
 
   vite@6.1.0(@types/node@22.13.1)(terser@5.38.1)(yaml@2.7.0):
     dependencies:
