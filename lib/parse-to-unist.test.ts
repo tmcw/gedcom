@@ -17,14 +17,12 @@ test("parser", (t) => {
 					type: "INDI",
 					data: {
 						formal_name: "INDIVIDUAL",
-						value: undefined,
 					},
 					children: [
 						{
 							type: "BIRT",
 							data: {
 								formal_name: "BIRTH",
-								value: undefined,
 							},
 							children: [
 								{
@@ -41,7 +39,6 @@ test("parser", (t) => {
 							type: "DEAT",
 							data: {
 								formal_name: "DEATH",
-								value: undefined,
 							},
 							children: [
 								{
@@ -78,7 +75,6 @@ test("parser - multiple root entities", (t) => {
 					type: "INDI",
 					data: {
 						formal_name: "INDIVIDUAL",
-						value: undefined,
 					},
 					children: [
 						{
@@ -95,7 +91,6 @@ test("parser - multiple root entities", (t) => {
 					type: "INDI",
 					data: {
 						formal_name: "INDIVIDUAL",
-						value: undefined,
 					},
 					children: [
 						{
@@ -144,7 +139,6 @@ test("parser - pointers", (t) => {
 					data: {
 						xref_id: "@3@",
 						formal_name: "INDIVIDUAL",
-						value: undefined,
 					},
 					children: [
 						{
@@ -167,7 +161,6 @@ test("parser - pointers", (t) => {
 							type: "BIRT",
 							data: {
 								formal_name: "BIRTH",
-								value: undefined,
 							},
 							children: [
 								{
@@ -191,7 +184,6 @@ test("parser - pointers", (t) => {
 									data: {
 										formal_name: "FAMILY_CHILD",
 										pointer: "@4@",
-										value: undefined,
 									},
 									children: [],
 								},
@@ -202,7 +194,6 @@ test("parser - pointers", (t) => {
 							data: {
 								formal_name: "FAMILY_CHILD",
 								pointer: "@4@",
-								value: undefined,
 							},
 							children: [],
 						},
@@ -210,7 +201,7 @@ test("parser - pointers", (t) => {
 							type: "FAMC",
 							data: {
 								formal_name: "FAMILY_CHILD",
-								value: undefined,
+
 								pointer: "@9@",
 							},
 							children: [
@@ -228,7 +219,6 @@ test("parser - pointers", (t) => {
 							type: "ADOP",
 							data: {
 								formal_name: "ADOPTION",
-								value: undefined,
 							},
 							children: [
 								{
@@ -236,7 +226,6 @@ test("parser - pointers", (t) => {
 									data: {
 										formal_name: "FAMILY_CHILD",
 										pointer: "@9@",
-										value: undefined,
 									},
 									children: [],
 								},
@@ -254,7 +243,6 @@ test("parser - pointers", (t) => {
 							type: "SLGC",
 							data: {
 								formal_name: "SEALING_CHILD",
-								value: undefined,
 							},
 							children: [
 								{
@@ -262,7 +250,6 @@ test("parser - pointers", (t) => {
 									data: {
 										formal_name: "FAMILY_CHILD",
 										pointer: "@9@",
-										value: undefined,
 									},
 									children: [],
 								},

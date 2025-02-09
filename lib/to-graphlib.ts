@@ -1,6 +1,6 @@
 import { Graph } from "graphlib";
 import { toD3Force } from "./to-d3-force";
-import { P } from "./types";
+import { Parent } from "./types";
 
 /**
  * Transforms a GEDCOM AST into a [Graphlib](https://github.com/dagrejs/graphlib)
@@ -9,15 +9,15 @@ import { P } from "./types";
  * @param root - Parsed GEDCOM content
  * @returns graphviz Graph object
  */
-export function toGraphlib(root: P): Graph {
+export function toGraphlib(root: Parent): Graph {
 	const { nodes, links } = toD3Force(root);
 
 	var digraph = new Graph();
 
 	for (let node of nodes) {
-		const { NAME }: { NAME?: string } = node.data || {};
+		const NAME = node.data?.NAME;
 		digraph.setNode(node.data?.xref_id as string, {
-			label: NAME ? NAME.replace(/^@/, "") : node.type,
+			label: NAME ? String(NAME).replace(/^@/, "") : node.type,
 		});
 	}
 	for (let link of links) {

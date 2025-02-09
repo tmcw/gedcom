@@ -1,17 +1,17 @@
 import type { Line } from "./tokenize";
 import { tokenize } from "./tokenize";
 import { FORMAL_NAMES } from "./formal_names";
-import { P } from "./types";
+import { Parent } from "./types";
 
 const rTerminator = new RegExp("(\\r|\\n|\\r\\n|\\n\\r)", "g");
 
 function lineToNode({ tag, value, xref_id, pointer }: Line) {
 	const formal_name = FORMAL_NAMES[tag];
-	const node: P = {
+	const node: Parent = {
 		type: tag,
 		data: {
 			formal_name,
-			value,
+			...(value !== undefined ? { value } : {}),
 		},
 		children: [],
 	};
@@ -23,7 +23,7 @@ function lineToNode({ tag, value, xref_id, pointer }: Line) {
 	return node;
 }
 
-function handleContinued({ tag, value, pointer }: Line, head: P) {
+function handleContinued({ tag, value, pointer }: Line, head: Parent) {
 	if (!(tag === "CONC" || tag === "CONT")) return false;
 	if (pointer) throw new Error("Cannot concatenate a pointer");
 	// If this is a NOTE tag, it may not have any text at the beginning.
@@ -51,15 +51,15 @@ function handleContinued({ tag, value, pointer }: Line, head: P) {
  * @param input - GEDCOM data as a string
  * @returns ast
  */
-export function parse(input: string): P {
-	let root: P = {
+export function parse(input: string): Parent {
+	let root: Parent = {
 		type: "root",
 		children: [],
 	};
 
 	const lines = input.split(rTerminator).filter((str) => str.trim());
 
-	let stack: P[] = [];
+	let stack: Parent[] = [];
 	let lastLevel = 0;
 
 	for (const line of lines) {

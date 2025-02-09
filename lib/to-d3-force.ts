@@ -1,6 +1,6 @@
 import { Node } from "unist";
 import { compact } from "./unist-compact";
-import { GEDCOMData, P } from "./types";
+import { GEDCOMData, Parent } from "./types";
 
 type Link = {
 	source: string;
@@ -39,7 +39,7 @@ function removeBidirectionals(linkIndex: Map<string, Link[]>, links: Link[]) {
  * @param root - Parsed GEDCOM content
  * @returns D3-friendly JSON
  */
-export function toD3Force(root: P): ForceData {
+export function toD3Force(root: Parent): ForceData {
 	const compacted = compact(root);
 	const nodes = compacted.children;
 

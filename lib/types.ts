@@ -1,11 +1,15 @@
-import { Parent, Node } from "unist";
+import { Parent as UnistParent, Node as UnistNode } from "unist";
 
 export type GEDCOMData = {
-	formal_name: string;
-	value: string | undefined;
+	formal_name?: string;
+	value?: string | undefined;
 	xref_id?: string | undefined;
 	pointer?: string | undefined;
 	custom_tag?: boolean | undefined;
+} & Record<string, unknown>;
+
+export type Node = UnistNode<GEDCOMData> & {
+	children?: (Parent | Node)[];
 };
 
-export type P = Parent<Node<GEDCOMData>, GEDCOMData>;
+export type Parent = UnistParent<Node, GEDCOMData>;
