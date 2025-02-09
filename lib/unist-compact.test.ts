@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { compact } from "./unist-compact";
+import { compact } from "./unist-compact.js";
 
 test("compact", () => {
   expect(

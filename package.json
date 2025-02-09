@@ -3,13 +3,12 @@
   "version": "3.0.2",
   "type": "module",
   "description": "a simple and readable gedcom parser",
-  "source": "index.ts",
-  "main": "./dist/gedcom.umd.cjs",
+  "main": "./dist/gedcom.cjs",
   "module": "./dist/gedcom.js",
   "exports": {
     ".": {
-      "import": "./dist/gedcom.js",
-      "require": "./dist/gedcom.umd.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "bin": {
@@ -21,13 +20,13 @@
     "doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
     "lint": "biome check",
     "prepublishOnly": "npm run build",
-    "build": "vite build"
+    "build": "tsup lib/index.ts --format esm,cjs && tsup lib/cli.ts --format esm"
   },
   "keywords": ["gedcom", "format", "geneaology"],
   "author": "Tom MacWright",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@types/graphlib": "^2.1.12",
     "@types/graphlib-dot": "^0.6.4",
     "@types/unist": "^3.0.3",
@@ -35,13 +34,12 @@
     "graphlib": "^2.1.8",
     "graphlib-dot": "^0.6.4",
     "meow": "^13.2.0",
-    "unist-util-remove": "^4.0.0",
-    "unist-util-visit-parents": "^6.0.1",
-    "@biomejs/biome": "^1.9.4",
-    "microbundle": "^0.15.1",
+    "tsup": "^8.3.6",
     "typedoc": "^0.27.6",
     "typedoc-plugin-markdown": "^4.4.1",
     "typescript": "^5.7.3",
+    "unist-util-remove": "^4.0.0",
+    "unist-util-visit-parents": "^6.0.1",
     "vite": "^6.1.0",
     "vite-plugin-externalize-deps": "^0.9.0",
     "vitest": "^3.0.5"

@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
-import { parse } from "./parse-to-unist";
-import { toDot } from "./to-dot";
+import { parse } from "./parse-to-unist.js";
+import { toDot } from "./to-dot.js";
 
 test("toDot", () => {
   expect(

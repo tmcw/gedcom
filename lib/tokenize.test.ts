@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { tokenize } from "./tokenize";
+import { tokenize } from "./tokenize.js";
 
 test("parser", () => {
   expect(tokenize("0 HEAD")).toEqual({ level: 0, tag: "HEAD" });

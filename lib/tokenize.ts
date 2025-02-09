@@ -1,4 +1,4 @@
-import type { FORMAL_NAMES } from "./formal_names";
+import type { FORMAL_NAMES } from "./formal_names.js";
 
 const cDigit = "0-9";
 const rLevel = new RegExp(`^([${cDigit}]*)`);

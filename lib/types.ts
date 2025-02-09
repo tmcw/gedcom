@@ -8,8 +8,12 @@ export type GEDCOMData = {
   custom_tag?: boolean | undefined;
 } & Record<string, unknown>;
 
-export type Node = UnistNode<GEDCOMData> & {
+export interface Node extends UnistNode {
+  data: GEDCOMData;
   children?: (Parent | Node)[];
-};
+}
 
-export type Parent = UnistParent<Node, GEDCOMData>;
+export interface Parent extends UnistParent {
+  data?: GEDCOMData;
+  children: (Parent | Node)[];
+}

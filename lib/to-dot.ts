@@ -1,6 +1,6 @@
 import dot from "graphlib-dot";
-import { toGraphlib } from "./to-graphlib";
-import type { Parent } from "./types";
+import { toGraphlib } from "./to-graphlib.js";
+import type { Parent } from "./types.js";
 
 /**
  * Transforms a GEDCOM AST - likely produced using

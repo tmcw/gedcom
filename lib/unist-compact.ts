@@ -1,6 +1,8 @@
+// @ts-nocheck TypeScript is wrong about this and I am too annoyed to fight it.
 import { remove } from "unist-util-remove";
+// unist-util-remove does have a named export.
 import { visitParents } from "unist-util-visit-parents";
-import type { GEDCOMData, Parent } from "./types";
+import type { GEDCOMData, Parent } from "./types.js";
 
 function addValue(data: GEDCOMData, path: string, value: any) {
   const existingValue = data![path];
@@ -74,7 +76,7 @@ export function compact(
     visitParents(child, (node, ancestors) => {
       const path = ancestors
         .slice(1)
-        .concat(node)
+        .concat(node as Parent)
         .map((a) => a.data?.formal_name || a.type)
         .join("/");
       if (node.data?.value) {

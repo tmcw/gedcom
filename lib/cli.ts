@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import Fs from "node:fs";
-import Path from "node:path";
+import * as Fs from "node:fs";
+import * as Path from "node:path";
 import getStdin from "get-stdin";
 import meow from "meow";
-import { parse, toD3Force, toDot } from "./index";
-import type { Parent } from "./lib/types";
+import { parse, toD3Force, toDot } from "./index.js";
+import type { Parent } from "./types.js";
 
 const cli = meow(
   `
@@ -17,10 +17,11 @@ const cli = meow(
 	  $ parse-gedcom input.ged output.json
 `,
   {
+    importMeta: import.meta,
     flags: {
       type: {
         type: "string",
-        alias: "t",
+        shortFlag: "t",
       },
     },
   },

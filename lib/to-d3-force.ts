@@ -1,5 +1,5 @@
-import type { Node, Parent } from "./types";
-import { compact } from "./unist-compact";
+import type { Node, Parent } from "./types.js";
+import { compact } from "./unist-compact.js";
 
 type Link = {
   source: string;
@@ -8,7 +8,7 @@ type Link = {
 };
 
 type ForceData = {
-  nodes: Node[];
+  nodes: (Node | Parent)[];
   links: Link[];
 };
 

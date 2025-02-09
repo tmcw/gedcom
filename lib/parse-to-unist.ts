@@ -1,7 +1,7 @@
-import { FORMAL_NAMES } from "./formal_names";
-import type { Line } from "./tokenize";
-import { tokenize } from "./tokenize";
-import type { Parent } from "./types";
+import { FORMAL_NAMES } from "./formal_names.js";
+import type { Line } from "./tokenize.js";
+import { tokenize } from "./tokenize.js";
+import type { Parent } from "./types.js";
 
 const rTerminator = /(\r|\n|\r\n|\n\r)/g;
 
@@ -53,6 +53,7 @@ function handleContinued({ tag, value, pointer }: Line, head: Parent) {
  */
 export function parse(input: string): Parent {
   const root: Parent = {
+    data: {},
     type: "root",
     children: [],
   };

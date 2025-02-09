@@ -1,12 +1,13 @@
-import Fs from "node:fs";
+import * as Fs from "node:fs";
 import { expect, test } from "vitest";
-import { parse } from "./parse-to-unist";
-import { toD3Force } from "./to-d3-force";
+import { parse } from "./parse-to-unist.js";
+import { toD3Force } from "./to-d3-force.js";
 
 test("toD3Force", () => {
   expect(
     toD3Force({
       type: "root",
+      data: {},
       children: [
         {
           type: "INDI",

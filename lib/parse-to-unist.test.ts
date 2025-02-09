@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { parse } from "./parse-to-unist";
+import { parse } from "./parse-to-unist.js";
 
 test("parser", () => {
   expect(
@@ -12,6 +12,7 @@ test("parser", () => {
     ),
   ).toEqual({
     type: "root",
+    data: {},
     children: [
       {
         type: "INDI",
@@ -67,6 +68,7 @@ test("parser - multiple root entities", () => {
     ),
   ).toEqual({
     type: "root",
+    data: {},
     children: [
       {
         type: "INDI",
@@ -127,6 +129,7 @@ test("parser - pointers", () => {
     ),
   ).toEqual({
     type: "root",
+    data: {},
     children: [
       {
         type: "INDI",

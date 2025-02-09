@@ -1,6 +1,6 @@
 import { Graph } from "graphlib";
-import { toD3Force } from "./to-d3-force";
-import type { Parent } from "./types";
+import { toD3Force } from "./to-d3-force.js";
+import type { Parent } from "./types.js";
 
 /**
  * Transforms a GEDCOM AST into a [Graphlib](https://github.com/dagrejs/graphlib)
