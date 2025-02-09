@@ -1,38 +1,38 @@
-import Fs from "fs";
+import Fs from "node:fs";
 import { test } from "tap";
 import { parse } from "./parse-to-unist";
 import { toD3Force } from "./to-d3-force";
 
 test("toD3Force", (t) => {
-	t.same(
-		toD3Force({
-			type: "root",
-			children: [
-				{
-					type: "INDI",
-					data: {
-						formal_name: "INDIVIDUAL",
-					},
-				},
-			],
-		}),
-		{
-			nodes: [
-				{
-					type: "INDI",
-					data: {
-						formal_name: "INDIVIDUAL",
-					},
-					children: [],
-				},
-			],
-			links: [],
-		},
-	);
+  t.same(
+    toD3Force({
+      type: "root",
+      children: [
+        {
+          type: "INDI",
+          data: {
+            formal_name: "INDIVIDUAL",
+          },
+        },
+      ],
+    }),
+    {
+      nodes: [
+        {
+          type: "INDI",
+          data: {
+            formal_name: "INDIVIDUAL",
+          },
+          children: [],
+        },
+      ],
+      links: [],
+    },
+  );
 
-	t.same(
-		toD3Force(
-			parse(`0 HEAD
+  t.same(
+    toD3Force(
+      parse(`0 HEAD
 1 GEDC
 2 VERS 5.5.5
 2 FORM LINEAGE-LINKED
@@ -80,79 +80,79 @@ test("toD3Force", (t) => {
 2 DATE 26 Jun 2015
 2 PLAC Portland, Mutnomah, Oregon, United States of America
 0 TRLR`),
-		),
-		{
-			nodes: [
-				{
-					type: "INDI",
-					data: {
-						formal_name: "INDIVIDUAL",
-						xref_id: "@I1@",
-						NAME: "John /Smith/",
-						"NAME/SURNAME": "Smith",
-						"NAME/GIVEN_NAME": "John",
-						SEX: "M",
-						"BIRTH/DATE": "1 Sep 1991",
-						"BIRTH/PLACE":
-							"Philadelphia, Philadelphia, Pennsylvania, United States of America",
-						"@FAMILY_SPOUSE": "@F1@",
-					},
+    ),
+    {
+      nodes: [
+        {
+          type: "INDI",
+          data: {
+            formal_name: "INDIVIDUAL",
+            xref_id: "@I1@",
+            NAME: "John /Smith/",
+            "NAME/SURNAME": "Smith",
+            "NAME/GIVEN_NAME": "John",
+            SEX: "M",
+            "BIRTH/DATE": "1 Sep 1991",
+            "BIRTH/PLACE":
+              "Philadelphia, Philadelphia, Pennsylvania, United States of America",
+            "@FAMILY_SPOUSE": "@F1@",
+          },
 
-					children: [],
-				},
-				{
-					type: "INDI",
-					data: {
-						formal_name: "INDIVIDUAL",
-						xref_id: "@I2@",
-						NAME: "Steven /Stevens/",
-						"NAME/SURNAME": "Stevens",
-						"NAME/GIVEN_NAME": "Steven",
-						SEX: "M",
-						"BIRTH/DATE": "8 Aug 1988",
-						"BIRTH/PLACE":
-							"Seattle, King, Washington, United States of America",
-						"@FAMILY_SPOUSE": "@F1@",
-					},
+          children: [],
+        },
+        {
+          type: "INDI",
+          data: {
+            formal_name: "INDIVIDUAL",
+            xref_id: "@I2@",
+            NAME: "Steven /Stevens/",
+            "NAME/SURNAME": "Stevens",
+            "NAME/GIVEN_NAME": "Steven",
+            SEX: "M",
+            "BIRTH/DATE": "8 Aug 1988",
+            "BIRTH/PLACE":
+              "Seattle, King, Washington, United States of America",
+            "@FAMILY_SPOUSE": "@F1@",
+          },
 
-					children: [],
-				},
-				{
-					type: "FAM",
-					data: {
-						formal_name: "FAMILY",
-						xref_id: "@F1@",
-						"@HUSBAND": "@I1@",
-						"@WIFE": "@I2@",
-						"MARRIAGE/DATE": "26 Jun 2015",
-						"MARRIAGE/PLACE":
-							"Portland, Mutnomah, Oregon, United States of America",
-					},
-					children: [],
-				},
-			],
-			links: [
-				{
-					source: "@I1@",
-					target: "@F1@",
-					value: "@FAMILY_SPOUSE",
-				},
-				{
-					source: "@I2@",
-					target: "@F1@",
-					value: "@FAMILY_SPOUSE",
-				},
-			],
-		},
-	);
+          children: [],
+        },
+        {
+          type: "FAM",
+          data: {
+            formal_name: "FAMILY",
+            xref_id: "@F1@",
+            "@HUSBAND": "@I1@",
+            "@WIFE": "@I2@",
+            "MARRIAGE/DATE": "26 Jun 2015",
+            "MARRIAGE/PLACE":
+              "Portland, Mutnomah, Oregon, United States of America",
+          },
+          children: [],
+        },
+      ],
+      links: [
+        {
+          source: "@I1@",
+          target: "@F1@",
+          value: "@FAMILY_SPOUSE",
+        },
+        {
+          source: "@I2@",
+          target: "@F1@",
+          value: "@FAMILY_SPOUSE",
+        },
+      ],
+    },
+  );
 
-	t.end();
+  t.end();
 });
 
 test("fuzz test with fixtures", (t) => {
-	const all = Fs.readFileSync("./fixture/all.ged", "utf8");
-	t.doesNotThrow(() => {
-		toD3Force(parse(all));
-	});
-	t.end();
+  const all = Fs.readFileSync("./fixture/all.ged", "utf8");
+  t.doesNotThrow(() => {
+    toD3Force(parse(all));
+  });
+  t.end();
 });

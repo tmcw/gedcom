@@ -1,8 +1,8 @@
-import { FORMAL_NAMES } from "./formal_names";
+import type { FORMAL_NAMES } from "./formal_names";
 
 const cDigit = "0-9";
 const rLevel = new RegExp(`^([${cDigit}]*)`);
-const cDelim = new RegExp("(\\s+)");
+const cDelim = /(\s+)/;
 const rDelim = new RegExp(`^([${cDelim}])`);
 const cAt = "@";
 const cAlpha = "A-ZÀ-ÿa-z_";
@@ -11,7 +11,7 @@ const cHash = "#";
 const cNonAt = `${cAlpha}${cDigit}${cDelim}${cHash}`;
 const cPointerChar = cNonAt;
 const rPointer = new RegExp(
-  `^${cAt}([${cAlphanum}])([${cPointerChar}\\-])*${cAt}`
+  `^${cAt}([${cAlphanum}])([${cPointerChar}\\-])*${cAt}`,
 );
 const rTag = new RegExp(`^(_?[${cAlphanum}]+)`);
 const rLineItem = new RegExp(/^(.*)/);
@@ -51,7 +51,7 @@ export function tokenize(buf: string): Line {
     throw new Error(`Invalid level: ${levelStr}`);
   }
 
-  const level = parseInt(levelStr);
+  const level = Number.parseInt(levelStr);
 
   expect(rDelim, "Expected delimiter after level");
 
@@ -64,7 +64,7 @@ export function tokenize(buf: string): Line {
 
   const tag = expect(rTag, "Expected tag") as TagName;
 
-  let line: Line = {
+  const line: Line = {
     level,
     tag,
   };

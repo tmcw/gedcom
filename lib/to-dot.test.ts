@@ -52,7 +52,7 @@ test("toDot", (t) => {
 1 MARR
 2 DATE 26 Jun 2015
 2 PLAC Portland, Mutnomah, Oregon, United States of America
-0 TRLR`)
+0 TRLR`),
     ),
     `strict digraph {
   \"@I1@\" [label=\"John /Smith/\"]
@@ -61,7 +61,7 @@ test("toDot", (t) => {
   \"@I1@\" -> \"@F1@\" [label=\"@FAMILY_SPOUSE\"]
   \"@I2@\" -> \"@F1@\" [label=\"@FAMILY_SPOUSE\"]
 }
-`
+`,
   );
 
   t.end();

@@ -1,14 +1,14 @@
-import type { GEDCOMData, Parent } from "./types";
-import visit from "unist-util-visit-parents";
 import remove from "unist-util-remove";
+import visit from "unist-util-visit-parents";
+import type { GEDCOMData, Parent } from "./types";
 
 function addValue(data: GEDCOMData, path: string, value: any) {
-	const existingValue = data![path];
-	if (!existingValue) {
-		data![path] = value;
-	} else {
-		data!["+" + path] = ((data!["+" + path] as any[]) || []).concat(value);
-	}
+  const existingValue = data![path];
+  if (!existingValue) {
+    data![path] = value;
+  } else {
+    data!["+" + path] = ((data!["+" + path] as any[]) || []).concat(value);
+  }
 }
 
 /**
@@ -64,27 +64,27 @@ function addValue(data: GEDCOMData, path: string, value: any) {
  * @returns the same document, with attributes compacted.
  */
 export function compact(
-	root: Parent,
-	removeNodes: string[] = ["TRLR", "SUBM", "SUBN", "HEAD", "NOTE", "SOUR"],
+  root: Parent,
+  removeNodes: string[] = ["TRLR", "SUBM", "SUBN", "HEAD", "NOTE", "SOUR"],
 ): Parent {
-	// Remove "trailer" objects, which are not useful to us.
-	remove(root, removeNodes);
-	for (let child of root.children) {
-		if (!child.data) child.data = {};
-		visit(child, (node, ancestors) => {
-			const path = ancestors
-				.slice(1)
-				.concat(node)
-				.map((a) => a.data?.formal_name || a.type)
-				.join("/");
-			if (node.data?.value) {
-				addValue(child.data!, path, node.data.value);
-			} else if (node.data?.pointer) {
-				addValue(child.data!, `@${path}`, node.data.pointer);
-			}
-		});
-		// FIXME: should this be brought back?
-		child.children = [];
-	}
-	return root;
+  // Remove "trailer" objects, which are not useful to us.
+  remove(root, removeNodes);
+  for (const child of root.children) {
+    if (!child.data) child.data = {};
+    visit(child, (node, ancestors) => {
+      const path = ancestors
+        .slice(1)
+        .concat(node)
+        .map((a) => a.data?.formal_name || a.type)
+        .join("/");
+      if (node.data?.value) {
+        addValue(child.data!, path, node.data.value);
+      } else if (node.data?.pointer) {
+        addValue(child.data!, `@${path}`, node.data.pointer);
+      }
+    });
+    // FIXME: should this be brought back?
+    child.children = [];
+  }
+  return root;
 }

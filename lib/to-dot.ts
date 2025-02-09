@@ -1,6 +1,6 @@
-import { Parent } from "./types";
 import dot from "graphlib-dot";
 import { toGraphlib } from "./to-graphlib";
+import type { Parent } from "./types";
 
 /**
  * Transforms a GEDCOM AST - likely produced using
@@ -11,5 +11,5 @@ import { toGraphlib } from "./to-graphlib";
  * @returns DOT-formatted graph
  */
 export function toDot(root: Parent): string {
-	return dot.write(toGraphlib(root));
+  return dot.write(toGraphlib(root));
 }
