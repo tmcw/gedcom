@@ -1,4 +1,4 @@
-import { test, expect } from "vitest";
+import { expect, test } from "vitest";
 import { parse } from "./parse-to-unist";
 import { toDot } from "./to-dot";
 

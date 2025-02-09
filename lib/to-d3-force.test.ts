@@ -1,5 +1,5 @@
 import Fs from "node:fs";
-import { test, expect } from "vitest";
+import { expect, test } from "vitest";
 import { parse } from "./parse-to-unist";
 import { toD3Force } from "./to-d3-force";
 
