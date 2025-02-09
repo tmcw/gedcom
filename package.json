@@ -1,6 +1,6 @@
 {
   "name": "gedcom",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "type": "module",
   "description": "a simple and readable gedcom parser",
   "main": "./dist/gedcom.cjs",
@@ -14,7 +14,9 @@
   "bin": {
     "gedcom": "dist/cli.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "vitest run",
     "doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
@@ -22,7 +24,11 @@
     "prepublishOnly": "npm run build",
     "build": "tsup lib/index.ts --format esm,cjs && tsup lib/cli.ts --format esm"
   },
-  "keywords": ["gedcom", "format", "geneaology"],
+  "keywords": [
+    "gedcom",
+    "format",
+    "geneaology"
+  ],
   "author": "Tom MacWright",
   "license": "ISC",
   "devDependencies": {
