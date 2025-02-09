@@ -1,6 +1,5 @@
-import { Node } from "unist";
+import type { Parent, Node } from "./types";
 import { compact } from "./unist-compact";
-import { GEDCOMData, Parent } from "./types";
 
 type Link = {
 	source: string;
@@ -9,7 +8,7 @@ type Link = {
 };
 
 type ForceData = {
-	nodes: Node<GEDCOMData>[];
+	nodes: Node[];
 	links: Link[];
 };
 

@@ -1,4 +1,4 @@
-import { Parent } from "unist";
+import { Parent } from "./types";
 import dot from "graphlib-dot";
 import { toGraphlib } from "./to-graphlib";
 
@@ -11,5 +11,5 @@ import { toGraphlib } from "./to-graphlib";
  * @returns DOT-formatted graph
  */
 export function toDot(root: Parent): string {
-  return dot.write(toGraphlib(root));
+	return dot.write(toGraphlib(root));
 }
