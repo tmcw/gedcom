@@ -35,10 +35,10 @@ export type Line = {
  * @param buf - One line of GEDCOM data as a string
  * @returns a line object.
  */
-export function tokenize(buf: string): Line {
+export function tokenize(buf: string, lineNumber: number): Line {
   function expect(re: RegExp, message: string) {
     const match = buf.match(re);
-    if (!match) throw new Error(message);
+    if (!match) throw new Error(`${message} at line ${lineNumber}`);
     buf = buf.substring(match[0].length);
     return match[1];
   }
@@ -48,7 +48,7 @@ export function tokenize(buf: string): Line {
   const levelStr = expect(rLevel, "Expected level");
 
   if (levelStr.length > 2 || (levelStr.length === 2 && levelStr[0] === "0")) {
-    throw new Error(`Invalid level: ${levelStr}`);
+    throw new Error(`Invalid level: ${levelStr} at line ${lineNumber}`);
   }
 
   const level = Number.parseInt(levelStr);
