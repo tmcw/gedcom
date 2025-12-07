@@ -26,14 +26,12 @@ function lineToNode({ tag, value, xref_id, pointer }: Line) {
 function handleContinued(
   { tag, value, pointer }: Line,
   head: Parent,
-  lineNumber?: number,
+  lineNumber: number,
 ) {
   if (!(tag === "CONC" || tag === "CONT")) return false;
   if (pointer)
     throw new Error(
-      lineNumber
-        ? `Cannot concatenate a pointer (CONC/CONT cannot have a pointer value) at line ${lineNumber}`
-        : "Cannot concatenate a pointer (CONC/CONT cannot have a pointer value)",
+      `Cannot concatenate a pointer (CONC/CONT cannot have a pointer value) at line ${lineNumber}`,
     );
   // If this is a NOTE tag, it may not have any text at the beginning.
   if (head.data) {
