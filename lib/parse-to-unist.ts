@@ -23,9 +23,9 @@ function lineToNode({ tag, value, xref_id, pointer }: Line) {
   return node;
 }
 
-function handleContinued({ tag, value, pointer }: Line, head: Parent) {
+function handleContinued({ tag, value, pointer }: Line, head: Parent, lineNumber?: number) {
   if (!(tag === "CONC" || tag === "CONT")) return false;
-  if (pointer) throw new Error("Cannot concatenate a pointer");
+  if (pointer) throw new Error(lineNumber ? `Cannot concatenate a pointer (CONC/CONT cannot have a pointer value) at line ${lineNumber}` : "Cannot concatenate a pointer (CONC/CONT cannot have a pointer value)");
   // If this is a NOTE tag, it may not have any text at the beginning.
   if (head.data) {
     if (!head.data.value) head.data.value = "";
@@ -63,10 +63,11 @@ export function parse(input: string): Parent {
   let stack: Parent[] = [];
   let lastLevel = 0;
 
-  for (const line of lines) {
-    const tokens = tokenize(line);
+  for (let i = 0; i < lines.length; i++) {
+    const lineNumber = i + 1;
+    const tokens = tokenize(lines[i], lineNumber);
 
-    if (handleContinued(tokens, stack[stack.length - 1])) {
+    if (handleContinued(tokens, stack[stack.length - 1], lineNumber)) {
       continue;
     }
 
@@ -83,9 +84,7 @@ export function parse(input: string): Parent {
       stack[stack.length - 1].children.push(node);
       stack.push(node);
     } else {
-      throw new Error(
-        `Illegal nesting: transition from ${lastLevel} to ${level}`,
-      );
+      throw new Error( `Illegal nesting at line ${lineNumber}: transition from level ${lastLevel} to ${level}`, );
     }
     lastLevel = level;
   }
