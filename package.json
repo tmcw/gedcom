@@ -4,15 +4,21 @@
   "type": "module",
   "description": "a simple and readable gedcom parser",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "bin": {
-    "gedcom": "dist/cli.js"
+    "gedcom": "dist/cli.mjs"
   },
   "files": [
     "dist"
@@ -22,7 +28,7 @@
     "doc": "typedoc --plugin typedoc-plugin-markdown --readme none index.ts",
     "lint": "biome check",
     "prepublishOnly": "npm run build",
-    "build": "tsup lib/index.ts --format esm,cjs && tsup lib/cli.ts --format esm"
+    "build": "tsdown"
   },
   "keywords": [
     "gedcom",
@@ -40,7 +46,7 @@
     "graphlib": "^2.1.8",
     "graphlib-dot": "^0.6.4",
     "meow": "^13.2.0",
-    "tsup": "^8.3.6",
+    "tsdown": "^0.17.4",
     "typedoc": "^0.27.6",
     "typedoc-plugin-markdown": "^4.4.1",
     "typescript": "^5.7.3",
@@ -52,6 +58,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:tmcw/parse-gedcom.git"
+    "url": "git@github.com:tmcw/gedcom.git"
   }
 }
