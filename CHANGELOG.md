@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.8
+
+### Patch Changes
+
+- 610deb4: Fix help for cli: it should be invoked as gedcom, not parse-gedcom
+
 ## 3.0.7
 
 ### Patch Changes
