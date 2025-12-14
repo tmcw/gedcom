@@ -71,10 +71,11 @@ export function tokenize(buf: string, lineNumber: number): Line {
 
   if (xref_id) line.xref_id = xref_id;
 
+  const plaintext = tag === "CONC" || tag === "CONT" || tag === "NOTE";
   const delim = buf.match(rDelim);
   if (delim) {
     buf = buf.substring(delim[0].length);
-    const pointer_match = buf.match(rPointer);
+    const pointer_match = !plaintext && buf.match(rPointer);
     const value_match = buf.match(rLineItem);
     if (pointer_match) {
       line.pointer = pointer_match[0];
