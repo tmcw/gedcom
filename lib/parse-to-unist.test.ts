@@ -287,13 +287,15 @@ test("parser - concatenation", () => {
   );
 });
 
-test("parser - concatenation", () => {
-  expect(() => {
+test("parser - concatenation with @ symbols", () => {
+  expect(
     parse(`
 0 SOUR Waters, Henry F., Genealogical Gleanings in England: Abstracts of W
 1 CONC ills Relating to Early American Families. 2 vols., reprint 1901, 190
-1 CONC @123@`).children[0].data?.value;
-  }).toThrow();
+1 CONC @123@`).children[0].data?.value,
+  ).toEqual(
+    "Waters, Henry F., Genealogical Gleanings in England: Abstracts of Wills Relating to Early American Families. 2 vols., reprint 1901, 190@123@",
+  );
 });
 
 test("parser - error, too large a jump", (t) => {
