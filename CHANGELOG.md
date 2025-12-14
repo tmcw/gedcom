@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.9
+
+### Patch Changes
+
+- 85d2b09: Allow all text in plain text fields
+
+  Plaintext fields (CONC, CONT, and NOTE) all allow any kind of text
+  and do not match for pointers.
+
 ## 3.0.8
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "gedcom",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "type": "module",
   "description": "a simple and readable gedcom parser",
   "main": "./dist/index.cjs",
