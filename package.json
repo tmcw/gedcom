@@ -60,5 +60,8 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:tmcw/gedcom.git"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
