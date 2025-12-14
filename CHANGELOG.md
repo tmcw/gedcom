@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.7
+
+### Patch Changes
+
+- 878018c: Actually include TypeScript types in package (fixes previous release)
+
 ## 3.0.6
 
 ### Patch Changes
