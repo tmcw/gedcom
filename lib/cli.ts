@@ -10,11 +10,11 @@ import type { Parent } from "./types.js";
 const cli = meow(
   `
 	Usage
-	  $ parse-gedcom <input>
+	  $ gedcom <input>
 	Options
 	  --type, -s   Output type (json, d3.json, dot)
 	Examples
-	  $ parse-gedcom input.ged output.json
+	  $ gedcom input.ged output.json
 `,
   {
     importMeta: import.meta,
